@@ -2,33 +2,61 @@ using UnityEngine;
 
 public class ArrowGauge : MonoBehaviour
 {
-    public SpriteRenderer spriteRenderer;
-    public float gaugeSpeed;
-    private float fillValue = 0f;
+    public float colorSpeed;
+
+    private Vector3 baseDirection = Vector3.forward;
+    private float xDirection;
+    private float yDirection;
+
+    private float fillAmount = 0f;
+    private MaterialPropertyBlock propBlock;
+    private Renderer rend;
     private bool increasing = true;
+
+    public void Awake()
+    {
+        rend = GetComponent<Renderer>();
+        propBlock = new MaterialPropertyBlock();
+    }
+
+    public void SetBaseDirection(float x, float y)
+    {
+        xDirection = x;
+        yDirection = y;
+        Quaternion xySet = Quaternion.Euler(xDirection, yDirection, 0);
+        transform.rotation = Quaternion.LookRotation(baseDirection) * xySet;
+    }
 
     void Update()
     {
-        // Fluctuate between 0 and 1
-        if (increasing)
+        Quaternion xyRotation = Quaternion.Euler(xDirection, yDirection, 0);
+        transform.rotation = Quaternion.LookRotation(baseDirection) * xyRotation;
+
+        if(increasing)
         {
-            fillValue += gaugeSpeed * Time.deltaTime;
-            if (fillValue >= 1f) increasing = false;
+            fillAmount += colorSpeed * Time.deltaTime;
+            if(fillAmount >= 1f)
+            {
+                increasing = false;
+            }
         }
         else
         {
-            fillValue -= gaugeSpeed * Time.deltaTime;
-            if (fillValue <= 0f) increasing = true;
+            fillAmount -= colorSpeed * Time.deltaTime;
+            if(fillAmount <= 0f)
+            {
+                increasing = true;
+            }
         }
 
-        // Change transparency from tail (0) to head (1)
-        Color color = spriteRenderer.color;
-        color.a = fillValue;
-        spriteRenderer.color = color;
+        rend.GetPropertyBlock(propBlock);
+        Color color = Color.Lerp(Color.white, Color.red, fillAmount);
+        propBlock.SetColor("_Color", color);
+        rend.SetPropertyBlock(propBlock);
     }
 
     public float GetFillAmount()
     {
-        return fillValue; // Returns percentage
+        return fillAmount;
     }
 }
