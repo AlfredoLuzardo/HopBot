@@ -301,8 +301,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1941325, y: 0.37522143, z: -0.080680236, w: 0.9027802}
-  m_LocalPosition: {x: -4.498925, y: 4.884052, z: -4.5579967}
+  m_LocalRotation: {x: -0.4089507, y: -0.33551988, z: 0.16479602, w: -0.8324831}
+  m_LocalPosition: {x: -1.5059762, y: 8.391865, z: -1.1627954}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -352,9 +352,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76e56385477859f44a94b6edf7133d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  endingTilePrefab: {fileID: 3111371753893441920, guid: 9d2d5502b02481948874b7568a1f1c1b, type: 3}
+  startingTilePrefab: {fileID: 3111371753893441920, guid: 0c9ff27bf1698a349a39e3d8f8237be7, type: 3}
   safeTilePrefab: {fileID: 3111371753893441920, guid: 1cb593fb638c05e43aabe6e42edfed1e, type: 3}
   breakableTilePrefab: {fileID: 6298263993392802659, guid: 0bb1216be30f51748b9ceae705959931, type: 3}
   dangerousTilePrefab: {fileID: 2563976910613314003, guid: 4cc5b42ea58d0da4db6d346aca6a5b23, type: 3}
+  playerObj: {fileID: 923966897385440203, guid: 82726742871bbf54785e1d53b23238a8, type: 3}
+  enemyObj: {fileID: 923966897385440203, guid: 67e0af973b983ca428eb8a6e0f9ed23b, type: 3}
   rows: 10
   cols: 10
   difficulty: hard
