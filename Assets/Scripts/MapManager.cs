@@ -1,4 +1,5 @@
 using UnityEngine;
+using HopBotNamespace;
 
 public class MapManager : MonoBehaviour
 {

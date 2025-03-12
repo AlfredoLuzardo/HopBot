@@ -357,7 +357,7 @@ MonoBehaviour:
   dangerousTilePrefab: {fileID: 2563976910613314003, guid: 4cc5b42ea58d0da4db6d346aca6a5b23, type: 3}
   rows: 10
   cols: 10
-  difficulty: easy
+  difficulty: hard
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
