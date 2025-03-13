@@ -79,8 +79,8 @@ public class PlayerLaunch : MonoBehaviour
     void LaunchPlayer()
     {
         float angleInRadians = savedXRotation * Mathf.Deg2Rad;
-        float posY = Mathf.Abs(360 * Mathf.Sin(angleInRadians));
-        float posZ = 360 * Mathf.Cos(angleInRadians);
+        float posY = Mathf.Abs(360 * Mathf.Sin(angleInRadians)) * 1.25f;
+        float posZ = 360 * Mathf.Cos(angleInRadians) * 1.25f;
 
         Debug.Log($"posY, posZ: {posY}, {posZ}");
 

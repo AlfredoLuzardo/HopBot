@@ -15,6 +15,7 @@ public class MapManager : MonoBehaviour
     public string difficulty = "easy";
 
     private Map map;
+    private Vector3 playerPos;
 
     public void Start()
     {
@@ -23,7 +24,12 @@ public class MapManager : MonoBehaviour
         DrawMap();
     }
 
-    void DrawMap()
+    public Vector3 GetPlayerPos()
+    {
+        return playerPos;
+    }
+
+    public void DrawMap()
     {
         for (int x = 0; x < map.GetNumRows(); x++)
         {
@@ -64,15 +70,18 @@ public class MapManager : MonoBehaviour
 
                 if (tilePrefab != null)
                 {
+                    // Generates Tile
                     Instantiate(tilePrefab, new Vector3(x, 0, y), Quaternion.identity);
                     
+                    // Generates Player and Enemies
                     if (tilePrefab == startingTilePrefab)
                     {
-                        Instantiate(playerObj, new Vector3(x, 1, y), Quaternion.identity);
+                        playerPos = new Vector3(x, 1, y);
+                        Instantiate(playerObj, playerPos, Quaternion.identity);
                     }
                     else if (Random.Range(0, 100) > 95 && tilePrefab != endingTilePrefab)
                     {
-                        Instantiate(enemyObj, new Vector3(x, 1, y), Quaternion.identity);
+                        Instantiate(enemyObj, new Vector3(x, 2, y), Quaternion.identity);
                     }
                 }
             }
