@@ -9,6 +9,7 @@ public class MapManager : MonoBehaviour
     public GameObject breakableTilePrefab;
     public GameObject dangerousTilePrefab;
     public GameObject playerObj;
+    public GameObject playerInstance;
     public GameObject enemyObj;
     public int rows = 10;
     public int cols = 10;
@@ -24,9 +25,21 @@ public class MapManager : MonoBehaviour
         DrawMap();
     }
 
+    public GameObject GetPlayerInstance()
+    {
+        return playerInstance;
+    }
+
     public Vector3 GetPlayerPos()
     {
         return playerPos;
+    }
+
+    public void UpdatePlayerMapPosition(Vector3 newPosition)
+    {
+        playerPos = newPosition;
+        
+        Debug.Log($"Player map position updated to: {playerPos}");
     }
 
     public void DrawMap()
@@ -77,7 +90,7 @@ public class MapManager : MonoBehaviour
                     if (tilePrefab == startingTilePrefab)
                     {
                         playerPos = new Vector3(x, 1, y);
-                        Instantiate(playerObj, playerPos, Quaternion.identity);
+                        playerInstance = Instantiate(playerObj, playerPos, Quaternion.identity);
                     }
                     else if (Random.Range(0, 100) > 95 && tilePrefab != endingTilePrefab)
                     {

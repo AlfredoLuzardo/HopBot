@@ -1,26 +1,37 @@
 using UnityEngine;
 
+/// <summary>
+/// Follows the player character.
+/// </summary>
 public class Follow : MonoBehaviour
 {
     public GameObject Target;
     public float distance;
+    public float speed = 3f;
     private Rigidbody rb;
+    private MapManager mapManager;
     
-
+    /// <summary>
+    /// Initializes the Rigidbody.
+    /// </summary>
     void Start()
     {
+        mapManager = FindObjectOfType<MapManager>();
+        if(mapManager.GetPlayerInstance() != null)
+        {
+            Target = mapManager.GetPlayerInstance();
+        }
         rb = GetComponent<Rigidbody>();
     }
-    // Update is called once per frame
+    
+    /// <summary>
+    /// Follows the player character every frame.
+    /// </summary>
     void Update()
     {
-        distance = Vector3.Distance(transform.position, Target.transform.position);
-        if(distance >= 0)
-        {
-            // transform.position = Vector3.MoveTowards(transform.position, Target.transform.position, 5 * Time.deltaTime);
-            Vector3 direction = (Target.transform.position - transform.position).normalized;
-            Debug.Log($"target pos: {Target.transform.position}");
-            rb.MovePosition(transform.position + direction * 2 * Time.fixedDeltaTime);
-        }
+        transform.position = Vector3.MoveTowards(transform.position, Target.transform.position, 3 * Time.deltaTime);
+        Vector3 direction = (Target.transform.position - transform.position).normalized;
+        Debug.Log($"target pos: {Target.transform.position}");
+        rb.MovePosition(transform.position + direction * speed * Time.fixedDeltaTime);
     }
 }

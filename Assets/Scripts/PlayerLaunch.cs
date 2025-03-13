@@ -13,6 +13,7 @@ public class PlayerLaunch : MonoBehaviour
     private float savedPower;
     private int clickCount;
     private Rigidbody rb;
+    private MapManager mapManager;
 
     /// <summary>
     /// Initializes the Rigidbody and resets the click count.
@@ -26,6 +27,7 @@ public class PlayerLaunch : MonoBehaviour
             Debug.LogError("Rigidbody component is missing from the GameObject.");
         }
         clickCount = 0;
+        mapManager = FindObjectOfType<MapManager>();
     }
 
     /// <summary>
@@ -86,6 +88,11 @@ public class PlayerLaunch : MonoBehaviour
 
         savedDirection = new Vector3(0, posY, posZ);
         rb.AddRelativeForce(savedDirection * savedPower, ForceMode.Impulse);
+        
+        if (mapManager != null)
+        {
+            mapManager.UpdatePlayerMapPosition(transform.position);
+        }
 
         savedXRotation = 0f;
         savedPower = 0f;
