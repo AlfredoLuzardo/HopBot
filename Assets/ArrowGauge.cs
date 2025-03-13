@@ -2,22 +2,14 @@ using UnityEngine;
 
 public class ArrowGauge : MonoBehaviour
 {
-    public float colorSpeed;
+    public float powerSpeed;
 
     private Vector3 baseDirection = Vector3.forward;
     private float xDirection;
     private float yDirection;
 
-    private float fillAmount = 0f;
-    private MaterialPropertyBlock propBlock;
-    private Renderer rend;
+    private float scaleFromOriginal = 0f;
     private bool increasing = true;
-
-    public void Awake()
-    {
-        rend = GetComponent<Renderer>();
-        propBlock = new MaterialPropertyBlock();
-    }
 
     public void SetBaseDirection(float x, float y)
     {
@@ -34,29 +26,26 @@ public class ArrowGauge : MonoBehaviour
 
         if(increasing)
         {
-            fillAmount += colorSpeed * Time.deltaTime;
-            if(fillAmount >= 1f)
+            scaleFromOriginal += powerSpeed * Time.deltaTime;
+            if(scaleFromOriginal >= 1f)
             {
                 increasing = false;
             }
         }
         else
         {
-            fillAmount -= colorSpeed * Time.deltaTime;
-            if(fillAmount <= 0f)
+            scaleFromOriginal -= powerSpeed * Time.deltaTime;
+            if(scaleFromOriginal <= 0f)
             {
                 increasing = true;
             }
         }
 
-        rend.GetPropertyBlock(propBlock);
-        Color color = Color.Lerp(Color.white, Color.red, fillAmount);
-        propBlock.SetColor("_Color", color);
-        rend.SetPropertyBlock(propBlock);
+        transform.localScale = new Vector3(1, 1, scaleFromOriginal);
     }
 
-    public float GetFillAmount()
+    public float getScaleFromOriginal()
     {
-        return fillAmount;
+        return scaleFromOriginal;
     }
 }
