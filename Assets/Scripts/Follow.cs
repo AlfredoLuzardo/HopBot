@@ -1,6 +1,8 @@
 using UnityEngine;
 
 /// <summary>
+/// Author: Keith Chow A01405612
+/// References: https://www.youtube.com/watch?v=9eTZqxxgGz8
 /// Follows the player character.
 /// </summary>
 public class Follow : MonoBehaviour

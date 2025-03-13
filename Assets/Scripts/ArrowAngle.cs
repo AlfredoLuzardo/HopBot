@@ -1,6 +1,7 @@
 using UnityEngine;
 
 /// <summary>
+/// Author: Alex Choi A01323994
 /// Controls the arrow to represent the launch angle. 
 /// The arrow oscillates between 0 and 90 degrees, indicating the vertical launch angle.
 /// </summary>

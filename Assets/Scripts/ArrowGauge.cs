@@ -1,6 +1,7 @@
 using UnityEngine;
 
 /// <summary>
+/// Author: Alex Choi A01323994
 /// Controls the arrow that represents the launch power gauge.
 /// The arrow scales back and forth to visualize power selection.
 /// </summary>

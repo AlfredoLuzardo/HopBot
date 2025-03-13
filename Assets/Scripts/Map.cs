@@ -1,13 +1,11 @@
 using UnityEngine;
-// using Unity.Debug;
 
-/// Alfredo Luzardo A01379913
-/// Keith Chow A01405612
-/// Alex Choi A01323994
+/// Author: Alfredo Luzardo A01379913
 /// <summary>
 /// Represents a map in a level.
 /// </summary>
-namespace HopBotNamespace{
+namespace HopBotNamespace
+{
     public class Map
     {
         const double noTilePercEasy         = 0.2;
@@ -70,8 +68,6 @@ namespace HopBotNamespace{
         /// The difficulty level which determines tile generation probabilities:
         /// "easy", "medium", or "hard".
         /// </param>
-        /// <exception cref="ArgumentException">
-        /// Thrown if an invalid difficulty level is provided.
         /// </exception>
         private void FillTiles(string difficulty)
         {
@@ -92,7 +88,6 @@ namespace HopBotNamespace{
                 default:
                     Debug.Log("Invalid difficulty level. Choose easy, medium or hard.");
                     break;
-                    // throw new Debug.LogException("Invalid difficulty level. Choose easy, medium or hard.");
             }
         }
 
@@ -130,21 +125,18 @@ namespace HopBotNamespace{
                             safeTile.Initialize(false, false, i, j);
                             map[i, j] = safeTile;
                         }
-                            // map[i, j] = new SafeTile(false, false, i, j);
                         else if (p < breakTilePerc)
                         {
                             BreakableTile breakableTile = (BreakableTile)CreateTile(breakableTileFactory);
                             breakableTile.Initialize(tileDurability, i, j);
                             map[i, j] = breakableTile;
                         }
-                            // map[i, j] = new BreakableTile(tileDurability, i, j);
                         else
                         {
                             DangerousTile dangerousTile = (DangerousTile)CreateTile(dangerousTileFactory);
                             dangerousTile.Initialize(i, j);
                             map[i, j] = dangerousTile;  
                         }
-                            // map[i, j] = new DangerousTile(i, j);
                     }
                 }
             }
@@ -238,6 +230,4 @@ namespace HopBotNamespace{
             FillTiles(difficulty);
         }
     }
-
-
 }

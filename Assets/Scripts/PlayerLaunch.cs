@@ -1,6 +1,11 @@
 using System;
 using UnityEngine;
 
+/// <summary>
+/// Author: Alex Choi
+/// References: https://www.youtube.com/watch?v=13TRK_YLv40
+/// Represents the player launch function
+/// </summary>
 public class PlayerLaunch : MonoBehaviour
 {
     public GameObject directionArrow;

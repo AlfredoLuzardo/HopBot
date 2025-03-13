@@ -2,6 +2,7 @@ using UnityEngine;
 using HopBotNamespace;
 
 /// <summary>
+/// Author: Alfredo Luzardo A01379913
 /// Manages a Map 
 /// </summary>
 public class MapManager : MonoBehaviour

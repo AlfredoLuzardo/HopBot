@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Author: Alfredo Luzardo A01379913
+/// Represents a factory for Breakable Tile
+/// </summary>
 public class BreakableTileFactory : TileFactory
 {
     /// <summary>

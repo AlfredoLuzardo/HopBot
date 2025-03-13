@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Author: Alfredo Luzardo A01379913
+/// Represents a Tile
+/// </summary>
 public abstract class Tile : MonoBehaviour
 {
     private int positionX;
@@ -15,12 +19,6 @@ public abstract class Tile : MonoBehaviour
         positionX = posX;
         positionY = posY;
     }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    // abstract void Start();
-
-    // Update is called once per frame
-    // public abstract void Update();
 
     /// <summary>
     /// Getter for PositionX
