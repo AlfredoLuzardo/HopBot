@@ -1,6 +1,9 @@
 using UnityEngine;
 using HopBotNamespace;
 
+/// <summary>
+/// Manages a Map 
+/// </summary>
 public class MapManager : MonoBehaviour
 {
     public GameObject endingTilePrefab;
@@ -18,6 +21,9 @@ public class MapManager : MonoBehaviour
     private Map map;
     private Vector3 playerPos;
 
+    /// <summary>
+    /// Start initializes the instance vars
+    /// </summary>
     public void Start()
     {
         map = new Map(rows, cols);
@@ -25,16 +31,28 @@ public class MapManager : MonoBehaviour
         DrawMap();
     }
 
+    /// <summary>
+    /// Gets the instance of the player
+    /// </summary>
+    /// <returns></returns>
     public GameObject GetPlayerInstance()
     {
         return playerInstance;
     }
 
+    /// <summary>
+    /// Gets the player position
+    /// </summary>
+    /// <returns></returns>
     public Vector3 GetPlayerPos()
     {
         return playerPos;
     }
 
+    /// <summary>
+    /// Updates the players instance position
+    /// </summary>
+    /// <param name="newPosition"></param>
     public void UpdatePlayerMapPosition(Vector3 newPosition)
     {
         playerPos = newPosition;
@@ -42,6 +60,10 @@ public class MapManager : MonoBehaviour
         Debug.Log($"Player map position updated to: {playerPos}");
     }
 
+    /// <summary>
+    /// Builds the map in 3D using different Tiles
+    /// Also spawns the player, and enemies
+    /// </summary>
     public void DrawMap()
     {
         for (int x = 0; x < map.GetNumRows(); x++)
