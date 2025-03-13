@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Controls the arrow to represent the launch angle. 
+/// The arrow oscillates between 0 and 90 degrees, indicating the vertical launch angle.
+/// </summary>
 public class ArrowAngle : MonoBehaviour
 {
     public float angleSpeed;
@@ -8,6 +12,9 @@ public class ArrowAngle : MonoBehaviour
     private Vector3 baseDirection = Vector3.forward;
     private float yDirection;
 
+    /// <summary>
+    /// Sets the base Y-axis rotation for the angle arrow to align with the saved launch direction.
+    /// </summary>
     public void SetBaseDirection(float y)
     {
         yDirection = y;
@@ -15,6 +22,9 @@ public class ArrowAngle : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(baseDirection) * ySet;
     }
 
+    /// <summary>
+    /// Updates the arrow's rotation to oscillate between 0 and 90 degrees, simulating angle selection.
+    /// </summary>
     void Update()
     {
         if (increasing)

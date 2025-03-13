@@ -11,14 +11,27 @@ public class PlayerLaunch : MonoBehaviour
     private float savedXRotation;
     private float savedYRotation;
     private float savedPower;
-    private int clickCount = 0;
+    private int clickCount;
     private Rigidbody rb;
 
+    /// <summary>
+    /// Initializes the Rigidbody and resets the click count.
+    /// Adds error handling in case the Rigidbody is not attached.
+    /// </summary>
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        if (rb == null)
+        {
+            Debug.LogError("Rigidbody component is missing from the GameObject.");
+        }
+        clickCount = 0;
     }
 
+    /// <summary>
+    /// Handles user input to control the launch process across three stages: direction, angle, and power.
+    /// Continuously updates the player’s rotation based on saved values.
+    /// </summary>
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -39,7 +52,7 @@ public class PlayerLaunch : MonoBehaviour
                 savedXRotation = angleArrow.transform.eulerAngles.x;
                 Debug.Log($"Saved X: {savedXRotation}");
                 gaugeArrow.GetComponent<ArrowGauge>().SetBaseDirection(savedXRotation, savedYRotation);
-                
+
                 angleArrow.SetActive(false);
                 gaugeArrow.SetActive(true);
             }
@@ -54,28 +67,26 @@ public class PlayerLaunch : MonoBehaviour
             }
         }
 
-        transform.rotation = Quaternion.LookRotation(
-            Vector3.forward
-        ) * Quaternion.Euler(0, savedYRotation, 0);
+        Quaternion baseRotation = Quaternion.LookRotation(Vector3.forward);
+        Quaternion yRotation = Quaternion.Euler(0, savedYRotation, 0);
+        transform.rotation = baseRotation * yRotation;
     }
 
+    /// <summary>
+    /// Calculates launch direction and applies force to the Rigidbody.
+    /// Resets launch parameters after applying the force.
+    /// </summary>
     void LaunchPlayer()
     {
-        transform.rotation = Quaternion.Euler(0.0f, savedYRotation, 0.0f);
-
-        float posY = Mathf.Abs(360 * Mathf.Sin(savedXRotation * Mathf.Deg2Rad));
-        float posZ = 360 * Mathf.Cos(savedXRotation * Mathf.Deg2Rad);
+        float angleInRadians = savedXRotation * Mathf.Deg2Rad;
+        float posY = Mathf.Abs(360 * Mathf.Sin(angleInRadians));
+        float posZ = 360 * Mathf.Cos(angleInRadians);
 
         Debug.Log($"posY, posZ: {posY}, {posZ}");
 
-
-        savedDirection = new Vector3(
-            0, posY, posZ
-        );
-
+        savedDirection = new Vector3(0, posY, posZ);
         rb.AddRelativeForce(savedDirection * savedPower, ForceMode.Impulse);
 
-        // savedDirection = new Vector3(0, 0, 0);
         savedXRotation = 0f;
         savedPower = 0f;
         clickCount = 0;
