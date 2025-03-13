@@ -3,9 +3,13 @@ using HopBotNamespace;
 
 public class MapManager : MonoBehaviour
 {
+    public GameObject endingTilePrefab;
+    public GameObject startingTilePrefab;
     public GameObject safeTilePrefab;
     public GameObject breakableTilePrefab;
     public GameObject dangerousTilePrefab;
+    public GameObject playerObj;
+    public GameObject enemyObj;
     public int rows = 10;
     public int cols = 10;
     public string difficulty = "easy";
@@ -29,9 +33,25 @@ public class MapManager : MonoBehaviour
 
                 var tile = map[x, y];
                 
-                if (tile is SafeTile)
+                if (tile is SafeTile safeTile)
                 {
-                    tilePrefab = safeTilePrefab;
+                    if (safeTile.GetIsStart())
+                    {
+                        tilePrefab = startingTilePrefab;
+                        Debug.Log("Starting Tile Created");
+                        Debug.Log(tilePrefab);
+                    }
+                    else if (safeTile.GetIsEnd())
+                    {
+                        tilePrefab = endingTilePrefab;
+                        Debug.Log("Ending Tile Created");
+                        Debug.Log(tilePrefab);
+                    }
+                    else
+                    {
+                        tilePrefab = safeTilePrefab;
+                    }
+                    
                 }
                 else if (tile is BreakableTile)
                 {
@@ -45,6 +65,15 @@ public class MapManager : MonoBehaviour
                 if (tilePrefab != null)
                 {
                     Instantiate(tilePrefab, new Vector3(x, 0, y), Quaternion.identity);
+                    
+                    if (tilePrefab == startingTilePrefab)
+                    {
+                        Instantiate(playerObj, new Vector3(x, 1, y), Quaternion.identity);
+                    }
+                    else if (Random.Range(0, 100) > 95 && tilePrefab != endingTilePrefab)
+                    {
+                        Instantiate(enemyObj, new Vector3(x, 1, y), Quaternion.identity);
+                    }
                 }
             }
         }
