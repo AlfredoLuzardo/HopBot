@@ -126,12 +126,6 @@ public class MapManager : MonoBehaviour
 
                         dangerousTile.SpawnSpike(spikePrefab);
                         dangerousTile.GetSpike().AddComponent<SpikeBehaviour>();
-                        // DangerousTileBehaviour tileBehaviour;
-
-                        // tileBehaviour = newTile.AddComponent<DangerousTileBehaviour>();
-                        // tileBehaviour.SetDangerousTile(dangerousTile);
-                        // tileBehaviour.SpawnSpike(spikePrefab);
-                        // tileBehaviour.GetSpike().AddComponent<SpikeBehaviour>();
                     }
                     
                     // Generates Player and Enemies
@@ -142,7 +136,7 @@ public class MapManager : MonoBehaviour
                     }
                     else if (Random.Range(0, 100) > 95 && tilePrefab != endingTilePrefab)
                     {
-                        Instantiate(enemyObj, new Vector3(x, 2, y), Quaternion.identity);
+                        // Instantiate(enemyObj, new Vector3(x, 2, y), Quaternion.identity);
                     }
                 }
             }
