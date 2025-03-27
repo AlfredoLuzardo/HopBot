@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4471688618499088013}
   m_Layer: 0
   m_Name: DangerousTilePrefab
-  m_TagString: Untagged
+  m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
