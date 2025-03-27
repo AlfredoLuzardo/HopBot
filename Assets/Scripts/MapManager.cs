@@ -116,18 +116,22 @@ public class MapManager : MonoBehaviour
                     {
                         BreakableTileBehaviour tileBehaviour;
 
+
                         breakableTile.setTileObject(newTile);
                         tileBehaviour = newTile.AddComponent<BreakableTileBehaviour>();
                         tileBehaviour.SetBreakableTile(breakableTile);
                     }
                     else if(tile is DangerousTile dangerousTile)
                     {
-                        DangerousTileBehaviour tileBehaviour;
 
-                        tileBehaviour = newTile.AddComponent<DangerousTileBehaviour>();
-                        tileBehaviour.SetDangerousTile(dangerousTile);
-                        tileBehaviour.SpawnSpike(spikePrefab);
-                        tileBehaviour.GetSpike().AddComponent<SpikeBehaviour>();
+                        dangerousTile.SpawnSpike(spikePrefab);
+                        dangerousTile.GetSpike().AddComponent<SpikeBehaviour>();
+                        // DangerousTileBehaviour tileBehaviour;
+
+                        // tileBehaviour = newTile.AddComponent<DangerousTileBehaviour>();
+                        // tileBehaviour.SetDangerousTile(dangerousTile);
+                        // tileBehaviour.SpawnSpike(spikePrefab);
+                        // tileBehaviour.GetSpike().AddComponent<SpikeBehaviour>();
                     }
                     
                     // Generates Player and Enemies
@@ -138,7 +142,7 @@ public class MapManager : MonoBehaviour
                     }
                     else if (Random.Range(0, 100) > 95 && tilePrefab != endingTilePrefab)
                     {
-                        // Instantiate(enemyObj, new Vector3(x, 2, y), Quaternion.identity);
+                        Instantiate(enemyObj, new Vector3(x, 2, y), Quaternion.identity);
                     }
                 }
             }
