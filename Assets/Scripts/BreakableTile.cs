@@ -12,6 +12,7 @@ public class BreakableTile : Tile
 
     /// <summary>
     /// Initializes the variables.
+
     /// </summary>
     /// <param name="durability"></param>
     /// <param name="posX"></param>
@@ -63,7 +64,7 @@ public class BreakableTile : Tile
     public void DecrementDurability()
     {
         durability--;
-        Debug.Log("HIT");
+        // Debug.Log("HIT");
         Debug.Log("DURABILITY: " + durability);
 
         if (durability == 0)

@@ -1,3 +1,4 @@
+// using System.Numerics;
 using UnityEngine;
 
 /// <summary>
@@ -6,5 +7,5 @@ using UnityEngine;
 /// </summary>
 public class DangerousTile : Tile
 {
-    // No implementation yet
+    // To be implemented
 }

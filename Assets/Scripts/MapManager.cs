@@ -12,6 +12,7 @@ public class MapManager : MonoBehaviour
     public GameObject safeTilePrefab;
     public GameObject breakableTilePrefab;
     public GameObject dangerousTilePrefab;
+    public GameObject spikePrefab;
     public GameObject playerObj;
     public GameObject playerInstance;
     public GameObject enemyObj;
@@ -118,6 +119,15 @@ public class MapManager : MonoBehaviour
                         breakableTile.setTileObject(newTile);
                         tileBehaviour = newTile.AddComponent<BreakableTileBehaviour>();
                         tileBehaviour.SetBreakableTile(breakableTile);
+                    }
+                    else if(tile is DangerousTile dangerousTile)
+                    {
+                        DangerousTileBehaviour tileBehaviour;
+
+                        tileBehaviour = newTile.AddComponent<DangerousTileBehaviour>();
+                        tileBehaviour.SetDangerousTile(dangerousTile);
+                        tileBehaviour.SpawnSpike(spikePrefab);
+                        tileBehaviour.GetSpike().AddComponent<SpikeBehaviour>();
                     }
                     
                     // Generates Player and Enemies
