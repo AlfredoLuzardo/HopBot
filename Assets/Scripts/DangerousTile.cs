@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// Author: Alfredo Luzardo A01379913
 /// Represents a Dangerous Tile
-/// version 1.2
+/// version 1.3
 /// </summary>
 public class DangerousTile : Tile
 {
@@ -30,6 +30,7 @@ public class DangerousTile : Tile
         float maxOffset;
         float spikeSize;
         float spikeHeight;
+        float tileHeight;
         float tileSize;
         Vector3 spikePosition;
 
@@ -41,10 +42,15 @@ public class DangerousTile : Tile
         offsetY = Random.Range(-maxOffset, maxOffset);
 
         spikeHeight = spikePrefab.transform.localScale.y;
+        tileHeight = 0.1141003f;
+
+        // 0.2f + (0.1141003f/2)
+        Debug.Log(spikeHeight);
+        Debug.Log(tileHeight);
 
         spikePosition = new Vector3(
             GetPositionX() + offsetX, 
-            spikeHeight, 
+            (spikeHeight / 2) + (tileHeight / 2), 
             GetPositionY() + offsetY);
 
         spike = Instantiate(spikePrefab, spikePosition, Quaternion.identity);
