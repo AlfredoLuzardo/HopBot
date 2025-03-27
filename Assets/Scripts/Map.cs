@@ -1,11 +1,12 @@
 using UnityEngine;
 
-/// Author: Alfredo Luzardo A01379913
-/// <summary>
-/// Represents a map in a level.
-/// </summary>
 namespace HopBotNamespace
 {
+    /// <summary>
+    /// Author: Alfredo Luzardo A01379913
+    /// Represents a map in a level.
+    /// version 1.1
+    /// </summary>
     public class Map
     {
         const double noTilePercEasy         = 0.2;

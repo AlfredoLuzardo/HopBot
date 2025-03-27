@@ -3,6 +3,7 @@ using UnityEngine;
 /// <summary>
 /// Author: Alfredo Luzardo A01379913
 /// Represents a SafeTile
+/// version 1.0
 /// </summary>
 public class SafeTile : Tile
 {

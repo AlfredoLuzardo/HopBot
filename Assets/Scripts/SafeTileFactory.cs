@@ -3,6 +3,7 @@ using UnityEngine;
 /// <summary>
 /// Author: Alfredo Luzardo A01379913
 /// Represents a factory for SafeTile
+/// version 1.1
 /// </summary>
 public class SafeTileFactory : TileFactory
 {
@@ -12,6 +13,12 @@ public class SafeTileFactory : TileFactory
     /// <returns>new Safetile()</returns>
     public Tile CreateTile()
     {
-        return new SafeTile();
+        GameObject newTileObject;
+        SafeTile safeTile;
+
+        newTileObject = new GameObject("SafeTile");
+        safeTile = newTileObject.AddComponent<SafeTile>();
+
+        return safeTile;
     }
 }

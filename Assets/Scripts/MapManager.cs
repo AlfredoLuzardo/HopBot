@@ -58,7 +58,7 @@ public class MapManager : MonoBehaviour
     {
         playerPos = newPosition;
         
-        Debug.Log($"Player map position updated to: {playerPos}");
+        // Debug.Log($"Player map position updated to: {playerPos}");
     }
 
     /// <summary>
@@ -80,14 +80,14 @@ public class MapManager : MonoBehaviour
                     if (safeTile.GetIsStart())
                     {
                         tilePrefab = startingTilePrefab;
-                        Debug.Log("Starting Tile Created");
-                        Debug.Log(tilePrefab);
+                        // Debug.Log("Starting Tile Created");
+                        // Debug.Log(tilePrefab);
                     }
                     else if (safeTile.GetIsEnd())
                     {
                         tilePrefab = endingTilePrefab;
-                        Debug.Log("Ending Tile Created");
-                        Debug.Log(tilePrefab);
+                        // Debug.Log("Ending Tile Created");
+                        // Debug.Log(tilePrefab);
                     }
                     else
                     {
@@ -107,7 +107,18 @@ public class MapManager : MonoBehaviour
                 if (tilePrefab != null)
                 {
                     // Generates Tile
-                    Instantiate(tilePrefab, new Vector3(x, 0, y), Quaternion.identity);
+                    GameObject newTile;
+                    
+                    newTile = Instantiate(tilePrefab, new Vector3(x, 0, y), Quaternion.identity);
+
+                    if(tile is BreakableTile breakableTile)
+                    {
+                        BreakableTileBehaviour tileBehaviour;
+
+                        breakableTile.setTileObject(newTile);
+                        tileBehaviour = newTile.AddComponent<BreakableTileBehaviour>();
+                        tileBehaviour.SetBreakableTile(breakableTile);
+                    }
                     
                     // Generates Player and Enemies
                     if (tilePrefab == startingTilePrefab)
@@ -117,7 +128,7 @@ public class MapManager : MonoBehaviour
                     }
                     else if (Random.Range(0, 100) > 95 && tilePrefab != endingTilePrefab)
                     {
-                        Instantiate(enemyObj, new Vector3(x, 2, y), Quaternion.identity);
+                        // Instantiate(enemyObj, new Vector3(x, 2, y), Quaternion.identity);
                     }
                 }
             }

@@ -6,6 +6,7 @@ using UnityEngine;
 /// </summary>
 public class BreakableTile : Tile
 {
+    GameObject breakableTile;
     int durability;
     bool isBroken;
 
@@ -24,10 +25,19 @@ public class BreakableTile : Tile
     }
 
     /// <summary>
+    /// Sets the gameobject to be attached to script
+    /// </summary>
+    /// <param name="tileObject"></param>
+    public void setTileObject(GameObject tileObject)
+    {
+        breakableTile = tileObject;
+    }
+
+    /// <summary>
     /// Getter for is broken
     /// </summary>
     /// <returns></returns>
-    public bool Get_IsBroken()
+    public bool GetIsBroken()
     {
         return isBroken;
     }
@@ -36,9 +46,14 @@ public class BreakableTile : Tile
     /// Destroy function.
     /// Sets isBroken to true.
     /// </summary>
-    public void Destroy()
+    public void Break()
     {
         isBroken = true;
+        if(breakableTile != null)
+        {
+            Debug.Log("DESTROYED");
+            Destroy(breakableTile);
+        }
     }
 
     /// <summary>
@@ -48,10 +63,12 @@ public class BreakableTile : Tile
     public void DecrementDurability()
     {
         durability--;
+        Debug.Log("HIT");
+        Debug.Log("DURABILITY: " + durability);
 
         if (durability == 0)
         {
-            Destroy();
+            Break();
         }
     }
 }

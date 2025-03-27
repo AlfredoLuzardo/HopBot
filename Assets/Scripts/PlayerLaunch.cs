@@ -32,7 +32,7 @@ public class PlayerLaunch : MonoBehaviour
             Debug.LogError("Rigidbody component is missing from the GameObject.");
         }
         clickCount = 0;
-        mapManager = FindObjectOfType<MapManager>();
+        mapManager = FindFirstObjectByType<MapManager>();
     }
 
     /// <summary>
@@ -48,7 +48,7 @@ public class PlayerLaunch : MonoBehaviour
             if (clickCount == 1)
             {
                 savedYRotation = directionArrow.transform.eulerAngles.y;
-                Debug.Log($"Saved Y: {savedYRotation}");
+                // Debug.Log($"Saved Y: {savedYRotation}");
                 angleArrow.GetComponent<ArrowAngle>().SetBaseDirection(savedYRotation);
 
                 directionArrow.SetActive(false);
@@ -57,7 +57,7 @@ public class PlayerLaunch : MonoBehaviour
             else if (clickCount == 2)
             {
                 savedXRotation = angleArrow.transform.eulerAngles.x;
-                Debug.Log($"Saved X: {savedXRotation}");
+                // Debug.Log($"Saved X: {savedXRotation}");
                 gaugeArrow.GetComponent<ArrowGauge>().SetBaseDirection(savedXRotation, savedYRotation);
 
                 angleArrow.SetActive(false);
@@ -66,7 +66,7 @@ public class PlayerLaunch : MonoBehaviour
             else if (clickCount == 3)
             {
                 savedPower = gaugeArrow.GetComponent<ArrowGauge>().getScaleFromOriginal();
-                Debug.Log($"Power:{savedPower}");
+                // Debug.Log($"Power:{savedPower}");
                 LaunchPlayer();
 
                 gaugeArrow.SetActive(false);
@@ -89,7 +89,7 @@ public class PlayerLaunch : MonoBehaviour
         float posY = Mathf.Abs(360 * Mathf.Sin(angleInRadians)) * 1.25f;
         float posZ = 360 * Mathf.Cos(angleInRadians) * 1.25f;
 
-        Debug.Log($"posY, posZ: {posY}, {posZ}");
+        // Debug.Log($"posY, posZ: {posY}, {posZ}");
 
         savedDirection = new Vector3(0, posY, posZ);
         rb.AddRelativeForce(savedDirection * savedPower, ForceMode.Impulse);

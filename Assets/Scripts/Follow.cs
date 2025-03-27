@@ -18,7 +18,7 @@ public class Follow : MonoBehaviour
     /// </summary>
     void Start()
     {
-        mapManager = FindObjectOfType<MapManager>();
+        mapManager = FindFirstObjectByType<MapManager>();
         if(mapManager.GetPlayerInstance() != null)
         {
             Target = mapManager.GetPlayerInstance();
@@ -33,7 +33,7 @@ public class Follow : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, Target.transform.position, 3 * Time.deltaTime);
         Vector3 direction = (Target.transform.position - transform.position).normalized;
-        Debug.Log($"target pos: {Target.transform.position}");
+        // Debug.Log($"target pos: {Target.transform.position}");
         rb.MovePosition(transform.position + direction * speed * Time.fixedDeltaTime);
     }
 }
