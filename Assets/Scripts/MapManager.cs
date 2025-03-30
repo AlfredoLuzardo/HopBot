@@ -17,6 +17,8 @@ public class MapManager : MonoBehaviour
     public GameObject playerObj;
     public GameObject playerInstance;
     public GameObject enemyObj;
+    public GameObject invincibilityItem;
+    public GameObject stopEnemiesItem;
     public int rows = 10;
     public int cols = 10;
     public string difficulty = "easy";
@@ -142,7 +144,24 @@ public class MapManager : MonoBehaviour
 
                 tileBehaviour = newTile.AddComponent<EndingTileBehaviour>();
                 tileBehaviour.SetEndingTile(safeTile);
-            }            
+            }
+            else
+            {
+                float num;
+
+                num = Random.Range(0, 100);
+
+                if(num > 95)
+                {
+                    safeTile.SpawnItem(invincibilityItem);
+                    safeTile.GetItem().AddComponent<Invincibility>();
+                }
+                else if(num > 90)
+                {
+                    safeTile.SpawnItem(stopEnemiesItem);
+                    safeTile.GetItem().AddComponent<StopEnemies>();
+                }
+            }
         }
         else if(tile is DangerousTile dangerousTile)
         {

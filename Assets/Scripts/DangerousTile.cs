@@ -1,4 +1,3 @@
-// using System.Numerics;
 using UnityEngine;
 
 /// <summary>
@@ -31,7 +30,6 @@ public class DangerousTile : Tile
         float maxOffset;
         float spikeSize;
         float spikeHeight;
-        // float tileHeight;
         float tileSize;
         Vector3 spikePosition;
 
@@ -43,11 +41,6 @@ public class DangerousTile : Tile
         offsetY = Random.Range(-maxOffset, maxOffset);
 
         spikeHeight = spikePrefab.transform.localScale.y;
-        // tileHeight = 0.1141003f;
-
-        // 0.2f + (0.1141003f/2)
-        // Debug.Log(spikeHeight);
-        // Debug.Log(TILE_HEIGHT);
 
         spikePosition = new Vector3(
             GetPositionX() + offsetX, 
@@ -58,12 +51,21 @@ public class DangerousTile : Tile
         spike.transform.parent = this.transform;
     }
 
+    /// <summary>
+    /// Spawns an enemy
+    /// </summary>
+    /// <param name="enemyPrefab"></param>
     public void SpawnEnemy(GameObject enemyPrefab)
     {
         float enemyHeight;
 
         enemyHeight = enemyPrefab.transform.localScale.y;
 
-        Instantiate(enemyPrefab, new Vector3(GetPositionX(), (enemyHeight / 2) + (TILE_HEIGHT / 2), GetPositionY()), Quaternion.identity);
+        Instantiate(enemyPrefab, 
+                    new Vector3(
+                        GetPositionX(), 
+                        (enemyHeight / 2) + (TILE_HEIGHT / 2), 
+                        GetPositionY()), 
+                    Quaternion.identity);
     }
 }

@@ -3,10 +3,11 @@ using UnityEngine;
 /// <summary>
 /// Author: Alfredo Luzardo A01379913
 /// Represents a SafeTile
-/// version 1.1
+/// version 1.2
 /// </summary>
 public class SafeTile : Tile
 {
+    GameObject item;
     private bool isStartTile;
     private bool isEndTile;
     
@@ -31,14 +32,20 @@ public class SafeTile : Tile
     /// <summary>
     /// Getter for isStartTile
     /// </summary>
-    /// <returns></returns>
+    /// <returns>isStartTile</returns>
     public bool GetIsStart() => isStartTile;
 
     /// <summary>
     /// Getter for isEndTile
     /// </summary>
-    /// <returns></returns>
+    /// <returns>isEndTile</returns>
     public bool GetIsEnd() => isEndTile;
+
+    /// <summary>
+    /// Getter for item 
+    /// </summary>
+    /// <returns>item</returns>
+    public GameObject GetItem() => item;
 
     /// <summary>
     /// Validation method for SafeTile
@@ -57,14 +64,22 @@ public class SafeTile : Tile
     /// <summary>
     /// Generates an item on the safetile.
     /// </summary>
-    public void GenerateItem()
+    public void SpawnItem(GameObject itemPrefab)
     {
         if (!isStartTile && !isEndTile)
         {
-            Debug.Log("Generated an Item!!!");
+            item = Instantiate(itemPrefab, 
+                               new Vector3(
+                                   GetPositionX(), 
+                                   0.5f, 
+                                   GetPositionY()), 
+                               Quaternion.identity);
         }
     }
 
+    /// <summary>
+    /// Ends the round if the endtile is hit
+    /// </summary>
     public void EndRound()
     {
         if(isEndTile)
