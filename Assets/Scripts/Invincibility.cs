@@ -3,7 +3,7 @@ using UnityEngine;
 /// <summary>
 /// Author: Alfredo Luzardo A01379913
 /// Represents the invincibility item
-/// version 1.1
+/// version 1.0
 /// </summary>
 public class Invincibility : Item
 {

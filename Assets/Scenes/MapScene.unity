@@ -361,6 +361,8 @@ MonoBehaviour:
   playerObj: {fileID: 6803664149494181677, guid: df60fc3320b592045af41130d104bbc7, type: 3}
   playerInstance: {fileID: 0}
   enemyObj: {fileID: 8763015984500235039, guid: 224478b9f2b314b4cbcddca20bf2ed0b, type: 3}
+  invincibilityItem: {fileID: 726947031651978277, guid: dda4f78d22c83234c9168ad89e93175b, type: 3}
+  stopEnemiesItem: {fileID: 2839482944895934988, guid: 5ea1eb99addbb8a47bfb84bad1c5d573, type: 3}
   rows: 5
   cols: 5
   difficulty: easy
