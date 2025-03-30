@@ -81,20 +81,15 @@ public class MapManager : MonoBehaviour
                     if (safeTile.GetIsStart())
                     {
                         tilePrefab = startingTilePrefab;
-                        // Debug.Log("Starting Tile Created");
-                        // Debug.Log(tilePrefab);
                     }
                     else if (safeTile.GetIsEnd())
                     {
                         tilePrefab = endingTilePrefab;
-                        // Debug.Log("Ending Tile Created");
-                        // Debug.Log(tilePrefab);
                     }
                     else
                     {
                         tilePrefab = safeTilePrefab;
                     }
-                    
                 }
                 else if (tile is BreakableTile)
                 {
@@ -111,32 +106,32 @@ public class MapManager : MonoBehaviour
                     GameObject newTile;
                     
                     newTile = Instantiate(tilePrefab, new Vector3(x, 0, y), Quaternion.identity);
-
-                    if(tile is BreakableTile breakableTile)
-                    {
-                        BreakableTileBehaviour tileBehaviour;
-
-
-                        breakableTile.setTileObject(newTile);
-                        tileBehaviour = newTile.AddComponent<BreakableTileBehaviour>();
-                        tileBehaviour.SetBreakableTile(breakableTile);
-                    }
-                    else if(tile is DangerousTile dangerousTile)
-                    {
-
-                        dangerousTile.SpawnSpike(spikePrefab);
-                        dangerousTile.GetSpike().AddComponent<SpikeBehaviour>();
-                    }
-                    
-                    // Generates Player and Enemies
+ 
+                    // Generates Player and Enemies or spikes
                     if (tilePrefab == startingTilePrefab)
                     {
                         playerPos = new Vector3(x, 1, y);
                         playerInstance = Instantiate(playerObj, playerPos, Quaternion.identity);
                     }
-                    else if (Random.Range(0, 100) > 95 && tilePrefab != endingTilePrefab)
+                    else if(tile is DangerousTile dangerousTile)
                     {
-                        // Instantiate(enemyObj, new Vector3(x, 2, y), Quaternion.identity);
+                        if (Random.Range(0, 100) > 70 )
+                        {
+                            dangerousTile.SpawnEnemy(enemyObj);
+                        }
+                        else
+                        {
+                            dangerousTile.SpawnSpike(spikePrefab);
+                            dangerousTile.GetSpike().AddComponent<SpikeBehaviour>();
+                        }
+                    }
+                    else if(tile is BreakableTile breakableTile)
+                    {
+                        BreakableTileBehaviour tileBehaviour;
+
+                        breakableTile.setTileObject(newTile);
+                        tileBehaviour = newTile.AddComponent<BreakableTileBehaviour>();
+                        tileBehaviour.SetBreakableTile(breakableTile);
                     }
                 }
             }

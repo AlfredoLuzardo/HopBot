@@ -9,6 +9,7 @@ using UnityEngine;
 public class DangerousTile : Tile
 {
     GameObject spike;
+    const float TILE_HEIGHT = 0.1141003f;
 
     /// <summary>
     /// Getter for Spike
@@ -30,7 +31,7 @@ public class DangerousTile : Tile
         float maxOffset;
         float spikeSize;
         float spikeHeight;
-        float tileHeight;
+        // float tileHeight;
         float tileSize;
         Vector3 spikePosition;
 
@@ -42,18 +43,27 @@ public class DangerousTile : Tile
         offsetY = Random.Range(-maxOffset, maxOffset);
 
         spikeHeight = spikePrefab.transform.localScale.y;
-        tileHeight = 0.1141003f;
+        // tileHeight = 0.1141003f;
 
         // 0.2f + (0.1141003f/2)
-        Debug.Log(spikeHeight);
-        Debug.Log(tileHeight);
+        // Debug.Log(spikeHeight);
+        // Debug.Log(TILE_HEIGHT);
 
         spikePosition = new Vector3(
             GetPositionX() + offsetX, 
-            (spikeHeight / 2) + (tileHeight / 2), 
+            (spikeHeight / 2) + (TILE_HEIGHT / 2), 
             GetPositionY() + offsetY);
 
         spike = Instantiate(spikePrefab, spikePosition, Quaternion.identity);
         spike.transform.parent = this.transform;
+    }
+
+    public void SpawnEnemy(GameObject enemyPrefab)
+    {
+        float enemyHeight;
+
+        enemyHeight = enemyPrefab.transform.localScale.y;
+
+        Instantiate(enemyPrefab, new Vector3(GetPositionX(), (enemyHeight / 2) + (TILE_HEIGHT / 2), GetPositionY()), Quaternion.identity);
     }
 }
