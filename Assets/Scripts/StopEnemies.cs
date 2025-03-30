@@ -31,11 +31,11 @@ public class StopEnemies : Item
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Follow[] enemies;
+            EnemyBehaviour[] enemies;
 
-            enemies = FindObjectsOfType<Follow>();
+            enemies = FindObjectsOfType<EnemyBehaviour>();
 
-            foreach(Follow enemy in enemies)
+            foreach(EnemyBehaviour enemy in enemies)
             {
                 enemy.SetNotAllowed();
             }
@@ -52,11 +52,11 @@ public class StopEnemies : Item
     /// </summary>
     /// <param name="enemies"></param>
     /// <returns></returns>
-    private IEnumerator ResumeEnemies(Follow[] enemies)
+    private IEnumerator ResumeEnemies(EnemyBehaviour[] enemies)
     {
         yield return new WaitForSeconds(duration);
 
-        foreach(Follow enemy in enemies)
+        foreach(EnemyBehaviour enemy in enemies)
         {
             enemy.SetAllowed();
         }

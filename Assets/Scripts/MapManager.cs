@@ -4,7 +4,7 @@ using HopBotNamespace;
 /// <summary>
 /// Author: Alfredo Luzardo A01379913
 /// Manages a Map
-/// version 1.4
+/// version 1.5
 /// </summary>
 public class MapManager : MonoBehaviour
 {
@@ -137,6 +137,7 @@ public class MapManager : MonoBehaviour
             {
                 playerPos = new Vector3(x, 1, y);
                 playerInstance = Instantiate(playerObj, playerPos, Quaternion.identity);
+                playerInstance.AddComponent<PlayerHealth>();
             }
             else if(safeTile.GetIsEnd())
             {
