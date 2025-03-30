@@ -7,6 +7,19 @@ using UnityEngine;
 /// </summary>
 public class Invincibility : Item
 {
+    private float duration = 2f;
+    private Collider itemCollider;
+    private MeshRenderer itemRenderer;
+
+    /// <summary>
+    /// Start method
+    /// </summary>
+    private void Start()
+    {
+        itemCollider = GetComponent<Collider>();
+        itemRenderer = GetComponent<MeshRenderer>();
+    }
+
     /// <summary>
     /// Detects when the player collides with the invincibility item.
     /// </summary>
@@ -15,9 +28,10 @@ public class Invincibility : Item
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Invincibility on");
-            // Implement invincibility logic here.
-            Destroy(this.gameObject);
+            
+            
+            itemCollider.enabled = false;
+            itemRenderer.enabled = false;
         }
     }
 }

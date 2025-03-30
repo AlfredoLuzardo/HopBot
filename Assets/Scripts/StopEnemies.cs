@@ -10,10 +10,13 @@ using System.Collections;
 /// </summary>
 public class StopEnemies : Item
 {
-    private float stopDuration = 3f;
+    private float duration = 2f;
     private Collider itemCollider;
     private MeshRenderer itemRenderer;
 
+    /// <summary>
+    /// Start method
+    /// </summary>
     private void Start()
     {
         itemCollider = GetComponent<Collider>();
@@ -51,7 +54,7 @@ public class StopEnemies : Item
     /// <returns></returns>
     private IEnumerator ResumeEnemies(Follow[] enemies)
     {
-        yield return new WaitForSeconds(stopDuration);
+        yield return new WaitForSeconds(duration);
 
         foreach(Follow enemy in enemies)
         {
