@@ -3,7 +3,8 @@ using HopBotNamespace;
 
 /// <summary>
 /// Author: Alfredo Luzardo A01379913
-/// Manages a Map 
+/// Manages a Map
+/// version 1.4
 /// </summary>
 public class MapManager : MonoBehaviour
 {
@@ -37,104 +38,131 @@ public class MapManager : MonoBehaviour
     /// Gets the instance of the player
     /// </summary>
     /// <returns></returns>
-    public GameObject GetPlayerInstance()
-    {
-        return playerInstance;
-    }
+    public GameObject GetPlayerInstance() => playerInstance;
 
     /// <summary>
     /// Gets the player position
     /// </summary>
     /// <returns></returns>
-    public Vector3 GetPlayerPos()
-    {
-        return playerPos;
-    }
+    public Vector3 GetPlayerPos() => playerPos;
 
     /// <summary>
     /// Updates the players instance position
     /// </summary>
     /// <param name="newPosition"></param>
-    public void UpdatePlayerMapPosition(Vector3 newPosition)
+    public void UpdatePlayerMapPosition(Vector3 newPosition) 
     {
         playerPos = newPosition;
-        
-        // Debug.Log($"Player map position updated to: {playerPos}");
     }
 
     /// <summary>
     /// Builds the map in 3D using different Tiles
     /// Also spawns the player, and enemies
     /// </summary>
-    public void DrawMap()
+    private void DrawMap()
     {
         for (int x = 0; x < map.GetNumRows(); x++)
         {
             for (int y = 0; y < map.GetNumCols(); y++)
             {
-                GameObject tilePrefab = null;
-
-                var tile = map[x, y];
+                GameObject tilePrefab;
+                Tile tile;
                 
-                if (tile is SafeTile safeTile)
-                {
-                    if (safeTile.GetIsStart())
-                    {
-                        tilePrefab = startingTilePrefab;
-                    }
-                    else if (safeTile.GetIsEnd())
-                    {
-                        tilePrefab = endingTilePrefab;
-                    }
-                    else
-                    {
-                        tilePrefab = safeTilePrefab;
-                    }
-                }
-                else if (tile is BreakableTile)
-                {
-                    tilePrefab = breakableTilePrefab;
-                }
-                else if (tile is DangerousTile)
-                {
-                    tilePrefab = dangerousTilePrefab;
-                }
+                tile = map[x, y];
+                tilePrefab = GetTilePrefab(tile);
 
                 if (tilePrefab != null)
                 {
-                    // Generates Tile
                     GameObject newTile;
                     
                     newTile = Instantiate(tilePrefab, new Vector3(x, 0, y), Quaternion.identity);
- 
-                    // Generates Player and Enemies or spikes
-                    if (tilePrefab == startingTilePrefab)
-                    {
-                        playerPos = new Vector3(x, 1, y);
-                        playerInstance = Instantiate(playerObj, playerPos, Quaternion.identity);
-                    }
-                    else if(tile is DangerousTile dangerousTile)
-                    {
-                        if (Random.Range(0, 100) > 70 )
-                        {
-                            dangerousTile.SpawnEnemy(enemyObj);
-                        }
-                        else
-                        {
-                            dangerousTile.SpawnSpike(spikePrefab);
-                            dangerousTile.GetSpike().AddComponent<SpikeBehaviour>();
-                        }
-                    }
-                    else if(tile is BreakableTile breakableTile)
-                    {
-                        BreakableTileBehaviour tileBehaviour;
-
-                        breakableTile.setTileObject(newTile);
-                        tileBehaviour = newTile.AddComponent<BreakableTileBehaviour>();
-                        tileBehaviour.SetBreakableTile(breakableTile);
-                    }
+                    HandleTileBehaviours(tile, newTile, x, y);
                 }
             }
+        }
+    }
+
+    /// <summary>
+    /// Gets the tile prefab based on the type of the tile
+    /// </summary>
+    /// <param name="tile"></param>
+    /// <returns></returns>
+    private GameObject GetTilePrefab(Tile tile)
+    {
+        GameObject prefab;
+
+        prefab = null;
+
+        if (tile is SafeTile safeTile)
+        {
+            if (safeTile.GetIsStart())
+            {
+                prefab = startingTilePrefab;
+            }
+            else if (safeTile.GetIsEnd())
+            {
+                prefab = endingTilePrefab;
+            }
+            else
+            {
+                prefab = safeTilePrefab;
+            }
+        }
+        else if (tile is BreakableTile)
+        {
+            prefab = breakableTilePrefab;
+        }
+        else if (tile is DangerousTile)
+        {
+            prefab = dangerousTilePrefab;
+        }
+
+        return prefab;
+    }
+
+    /// <summary>
+    /// Handles the behaviour of different tiles
+    /// </summary>
+    /// <param name="tile"></param>
+    /// <param name="newTile"></param>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    private void HandleTileBehaviours(Tile tile, GameObject newTile, int x, int y)
+    {
+        if(tile is SafeTile safeTile)
+        {
+            if(safeTile.GetIsStart())
+            {
+                playerPos = new Vector3(x, 1, y);
+                playerInstance = Instantiate(playerObj, playerPos, Quaternion.identity);
+            }
+            else if(safeTile.GetIsEnd())
+            {
+                EndingTileBehaviour tileBehaviour;
+
+                tileBehaviour = newTile.AddComponent<EndingTileBehaviour>();
+                tileBehaviour.SetEndingTile(safeTile);
+            }            
+        }
+        else if(tile is DangerousTile dangerousTile)
+        {
+            if (Random.Range(0, 100) > 70 )
+            {
+                dangerousTile.SpawnEnemy(enemyObj);
+            }
+            else
+            {
+                dangerousTile.SpawnSpike(spikePrefab);
+                dangerousTile.GetSpike().AddComponent<SpikeBehaviour>();
+            }
+        }
+        else if(tile is BreakableTile breakableTile)
+        {
+            BreakableTileBehaviour tileBehaviour;
+
+            breakableTile.setTileObject(newTile);
+            tileBehaviour = newTile.AddComponent<BreakableTileBehaviour>();
+            tileBehaviour.SetBreakableTile(breakableTile);
         }
     }
 }

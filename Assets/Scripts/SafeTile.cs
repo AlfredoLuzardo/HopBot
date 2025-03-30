@@ -3,7 +3,7 @@ using UnityEngine;
 /// <summary>
 /// Author: Alfredo Luzardo A01379913
 /// Represents a SafeTile
-/// version 1.0
+/// version 1.1
 /// </summary>
 public class SafeTile : Tile
 {
@@ -57,11 +57,20 @@ public class SafeTile : Tile
     /// <summary>
     /// Generates an item on the safetile.
     /// </summary>
-    public void Generate_Item()
+    public void GenerateItem()
     {
         if (!isStartTile && !isEndTile)
         {
             Debug.Log("Generated an Item!!!");
+        }
+    }
+
+    public void EndRound()
+    {
+        if(isEndTile)
+        {
+            Debug.Log("HIT END TILE");
+            // switch scenes
         }
     }
 }
