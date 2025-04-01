@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 663691730272813903}
   - component: {fileID: 8586712993730691961}
   m_Layer: 0
-  m_Name: EndingTilePrefab
-  m_TagString: Tile
+  m_Name: SpikePlaceholder
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
