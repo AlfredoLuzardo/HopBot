@@ -49,25 +49,24 @@ public class PlayerController : MonoBehaviour
         Vector3 targetPoint;
         Vector3 direction;
         
-        groundPlane = new Plane(Vector3.up, transform.position); // Plane at player's height
+        groundPlane = new Plane(Vector3.up, transform.position);
         ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 
-        targetPoint = transform.position + transform.forward * 10f; // Default target if no intersection
+        targetPoint = transform.position + transform.forward * 10f;
 
         if (groundPlane.Raycast(ray, out float enter))
         {
-            targetPoint = ray.GetPoint(enter); // Project onto the plane
+            targetPoint = ray.GetPoint(enter);
         }
 
         direction = targetPoint - transform.position;
-        direction.y = 0; // Keep horizontal
+        direction.y = 0;
 
-        if (direction.sqrMagnitude > 0.5f) // Prevent flickering
+        if (direction.sqrMagnitude > 0.5f)
         {
             directionArrow.transform.rotation = Quaternion.LookRotation(direction);
         }
 
-        directionArrow.transform.position = transform.position + direction.normalized * 1f; // Slight offset forward
         transform.rotation = Quaternion.LookRotation(direction);
     }
 
@@ -80,14 +79,17 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
         {
-            Plane groundPlane = new Plane(Vector3.up, transform.position);
-            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            Plane groundPlane;
+            Ray ray;
+            Vector3 targetPosition;
 
-            Vector3 targetPosition = transform.position + transform.forward * 10f; // Default movement target
+            groundPlane     = new Plane(Vector3.up, transform.position);
+            ray             = mainCamera.ScreenPointToRay(Input.mousePosition);
+            targetPosition = transform.position + transform.forward * 10f;
 
             if (groundPlane.Raycast(ray, out float enter))
             {
-                targetPosition = ray.GetPoint(enter); // Project onto the ground plane
+                targetPosition = ray.GetPoint(enter);
             }
 
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, 2f * Time.deltaTime);
