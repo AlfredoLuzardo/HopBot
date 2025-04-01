@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void Update()
     {
+        PreventTripping();
         UpdateDirectionArrow();
         HandleBotMovement();
 
@@ -76,7 +77,7 @@ public class PlayerController : MonoBehaviour
 
     // }
 
-    void UpdateDirectionArrow()
+    private void UpdateDirectionArrow()
     {
         Plane groundPlane;
         Ray ray;
@@ -99,14 +100,10 @@ public class PlayerController : MonoBehaviour
         if (direction.sqrMagnitude > 0.5f) // Prevent flickering
         {
             directionArrow.transform.rotation = Quaternion.LookRotation(direction);
-
-            if (!(Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))) 
-            {
-                transform.rotation = Quaternion.LookRotation(direction);
-            }
         }
 
         directionArrow.transform.position = transform.position + direction.normalized * 1f; // Slight offset forward
+        transform.rotation = Quaternion.LookRotation(direction);
     }
 
 
@@ -141,7 +138,7 @@ public class PlayerController : MonoBehaviour
     //     }
     // }
 
-    void HandleBotMovement()
+    private void HandleBotMovement()
     {
         if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
         {
@@ -159,6 +156,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Prevent the player falling down
+    /// </summary>
+    private void PreventTripping()
+    {
+        Quaternion currentRotation = transform.rotation;
+        transform.rotation = Quaternion.Euler(0, currentRotation.eulerAngles.y, 0);
+    }
 
     /// <summary>
     /// Launches the player upwards with a fixed power of 1.
