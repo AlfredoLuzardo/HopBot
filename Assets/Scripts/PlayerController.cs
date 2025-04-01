@@ -43,40 +43,6 @@ public class PlayerController : MonoBehaviour
     /// Keeps the direction arrow around the player and points it towards the mouse cursor.
     /// </summary>
     // void UpdateDirectionArrow()
-    // {
-    //     Ray ray;
-    //     int layerMask;
-    //     Vector3 targetPoint;
-    //     Vector3 direction;
-
-    //     ray       = mainCamera.ScreenPointToRay(Input.mousePosition);
-    //     layerMask = ~LayerMask.GetMask("Player");
-
-    //     // Default target is a point in front of the player
-    //     targetPoint = transform.position + transform.forward * 10f;
-
-    //     if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
-    //     {
-    //         targetPoint = hit.point;  // Use the point where the ray hit
-    //     }
-
-    //     // Determine the direction the arrow should face
-    //     direction = targetPoint - transform.position;
-    //     direction.y = 0; // Keep it horizontal
-
-    //     if (direction.magnitude > 0.1f) // Prevent flickering when close to the player
-    //     {
-    //         // Make the arrow face the target
-    //         directionArrow.transform.rotation = Quaternion.LookRotation(direction);
-
-    //         // Make the player face the direction where the arrow is pointing
-    //         transform.rotation = Quaternion.LookRotation(direction);
-    //     }
-
-    //     directionArrow.transform.position = transform.position; // Keep it centered on the player
-
-    // }
-
     private void UpdateDirectionArrow()
     {
         Plane groundPlane;
@@ -111,33 +77,6 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Moves the player towards the mouse cursor when Ctrl is held.
     /// </summary>
-    // void HandleBotMovement()
-    // {
-    //     if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
-    //     {
-    //         // {
-    //         //     Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-    //         //     if (Physics.Raycast(ray, out RaycastHit hit))
-    //         //     {
-    //         //         Vector3 targetPosition = hit.point;
-    //         //         // targetPosition.y = transform.position.y; // Keep movement on ground level
-    //         //         transform.position = Vector3.MoveTowards(transform.position, targetPosition, 5f * Time.deltaTime);
-    //         //     }
-    //         // }
-    //         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-    //         Vector3 targetPosition = transform.position + transform.forward * 10f; // Default to moving forward
-
-    //         if (Physics.Raycast(ray, out RaycastHit hit))
-    //         {
-    //             targetPosition = hit.point;  // Use the point where the ray hit
-    //         }
-
-    //         // Make the player move towards the target position
-    //         transform.position = Vector3.MoveTowards(transform.position, targetPosition, 5f * Time.deltaTime);
-        
-    //     }
-    // }
-
     private void HandleBotMovement()
     {
         if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
@@ -152,7 +91,7 @@ public class PlayerController : MonoBehaviour
                 targetPosition = ray.GetPoint(enter); // Project onto the ground plane
             }
 
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, 5f * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, 2f * Time.deltaTime);
         }
     }
 
