@@ -677,6 +677,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   directionArrow: {fileID: 1522360185}
+  jumpForce: 2
 --- !u!65 &1241999882
 BoxCollider:
   m_ObjectHideFlags: 0
