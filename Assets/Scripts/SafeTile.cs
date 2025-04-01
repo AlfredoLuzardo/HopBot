@@ -1,3 +1,4 @@
+using System.Threading;
 using UnityEngine;
 
 /// <summary>
@@ -85,7 +86,34 @@ public class SafeTile : Tile
         if(isEndTile)
         {
             Debug.Log("HIT END TILE");
+            // log score here
+            CalculateScore();
             // switch scenes
         }
+    }
+
+    private void CalculateScore(){
+        Timer timer = GameObject.FindFirstObjectByType<Timer>();
+        if (timer == null)
+        {
+            Debug.LogError("Timer not found in the scene.");
+            return;
+        }
+
+        float remainingTime = timer.GetRemainingTime();
+        float initialTimeLimit = timer.GetInitialTimeLimit();
+        float score;
+
+        if (remainingTime >= initialTimeLimit - 5) 
+        {
+            score = 1000; // Full score if completed within the first 5 sec
+        }
+        else
+        {
+            float maxScoreTime = initialTimeLimit - 5; 
+            score = Mathf.Clamp((remainingTime / maxScoreTime) * 1000, 0, 1000);
+        }
+
+        Debug.Log($"HIT END TILE - Score: {Mathf.RoundToInt(score)}");
     }
 }

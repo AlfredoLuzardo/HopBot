@@ -4,7 +4,13 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     public float timeLimit = 90F;
+    private float initialTimeLimit;
     [SerializeField] Text timerText;
+
+    void Start()
+    {
+        initialTimeLimit = timeLimit;
+    }
 
     void Update()
     {
@@ -18,5 +24,24 @@ public class Timer : MonoBehaviour
         int min = Mathf.FloorToInt(timeLimit / 60);
         int sec = Mathf.FloorToInt(timeLimit % 60);
         timerText.text = string.Format("Timer {0:00}:{1:00}", min, sec);
+    }
+
+
+    /// <summary>
+    /// Getter for the remaining time
+    /// </summary>
+    /// <returns></returns>
+    public float GetRemainingTime()
+    {
+        return timeLimit;
+    }
+
+    /// <summary>
+    /// Getter for the initial time
+    /// </summary>
+    /// <returns></returns>
+    public float GetInitialTimeLimit()
+    {
+        return initialTimeLimit;
     }
 }

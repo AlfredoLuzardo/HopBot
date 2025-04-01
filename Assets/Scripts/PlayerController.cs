@@ -34,7 +34,6 @@ public class PlayerController : MonoBehaviour
         if (isGrounded && !isJumping)
         {
             LaunchPlayer();
-            Debug.Log("Jumped");
             isJumping = true;
         }
     }
@@ -121,7 +120,6 @@ public class PlayerController : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Tile stepped.");
         if(other.CompareTag("Tile"))
         {
             isGrounded = true;
