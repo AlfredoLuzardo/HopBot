@@ -1,10 +1,21 @@
 using UnityEngine;
 
+/// <summary>
+/// Author: Alfredo Luzardo A01379913
+/// Represents a SafeTile
+/// </summary>
 public class SafeTile : Tile
 {
     private bool isStartTile;
     private bool isEndTile;
-
+    
+    /// <summary>
+    /// Initializes the variables
+    /// </summary>
+    /// <param name="startBoolean"></param>
+    /// <param name="endBoolean"></param>
+    /// <param name="posX"></param>
+    /// <param name="posY"></param>
     public void Initialize(bool startBoolean, 
                            bool endBoolean, 
                            int posX,

@@ -1,10 +1,20 @@
 using UnityEngine;
 
+/// <summary>
+/// Author: Alfredo Luzardo
+/// Represents a Breakable Tile
+/// </summary>
 public class BreakableTile : Tile
 {
     int durability;
     bool isBroken;
 
+    /// <summary>
+    /// Initializes the variables.
+    /// </summary>
+    /// <param name="durability"></param>
+    /// <param name="posX"></param>
+    /// <param name="posY"></param>
     public void Initialize(int durability, 
                            int posX, 
                            int posY)
@@ -12,18 +22,6 @@ public class BreakableTile : Tile
         base.Initialize(posX, posY);
         this.durability = durability;
     }
-
-    // /// <summary>
-    // /// Constructor for BreakableTile
-    // /// </summary>
-    // /// <param name="durability"></param>
-    // /// <param name="posX"></param>
-    // /// <param name="posY"></param>
-    // public BreakableTile(int durability, int posX, int posY) : base(posX, posY)
-    // {
-    //     this.durability = durability;
-    //     this.isBroken = false;
-    // }
 
     /// <summary>
     /// Getter for is broken
@@ -56,15 +54,4 @@ public class BreakableTile : Tile
             Destroy();
         }
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    // void Start()
-    // {
-        
-    // }
-
-    // // Update is called once per frame
-    // void Update()
-    // {
-        
-    // }
 }

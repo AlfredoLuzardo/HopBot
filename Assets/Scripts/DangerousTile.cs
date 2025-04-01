@@ -1,18 +1,10 @@
 using UnityEngine;
 
+/// <summary>
+/// Author: Alfredo Luzardo A01379913
+/// Represents a Dangerous Tile
+/// </summary>
 public class DangerousTile : Tile
 {
-    
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    // void Start()
-    // {
-        
-    // }
-
-    // // Update is called once per frame
-    // void Update()
-    // {
-        
-    // }
+    // No implementation yet
 }
