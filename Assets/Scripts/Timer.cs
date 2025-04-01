@@ -1,10 +1,11 @@
 using UnityEngine;
-using TMPro;  // Required for TextMeshPro
+// using TMP_Text;
 
 public class Timer : MonoBehaviour
 {
-    public TextMeshProUGUI timerText;  // Reference to the TMP Text UI element
-    private float timeRemaining = 90f;  // Starting time in seconds (90 seconds)
+    public TextMesh timerText;
+    // public TextMeshProUGUI timerText;  
+    private float timeRemaining = 90f;
     private bool isTimerRunning = true;
 
     void Update()
