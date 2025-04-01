@@ -3,6 +3,7 @@ using UnityEngine;
 /// <summary>
 /// Author: Alfredo Luzardo A01379913
 /// Represents a factory for dangerous tile
+/// version 1.1
 /// </summary>
 public class DangerousTileFactory : TileFactory
 {
@@ -12,6 +13,12 @@ public class DangerousTileFactory : TileFactory
     /// <returns></returns>
     public Tile CreateTile()
     {
-        return new DangerousTile();
+        GameObject newTileObject;
+        DangerousTile dangerousTile;
+
+        newTileObject = new GameObject("DangerousTile");
+        dangerousTile = newTileObject.AddComponent<DangerousTile>();
+
+        return dangerousTile;
     }
 }

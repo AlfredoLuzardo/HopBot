@@ -251,8 +251,8 @@ Camera:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.07432537, g: 0.15478392, b: 0.2754717, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -273,11 +273,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: -50
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 3
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -301,13 +301,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.4089507, y: -0.33551988, z: 0.16479602, w: -0.8324831}
-  m_LocalPosition: {x: -1.5059762, y: 9.51, z: -2.3}
+  m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
+  m_LocalPosition: {x: 2.5, y: 0, z: 2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 18.841, y: 20.202, z: 0.423}
+  m_LocalEulerAnglesHint: {x: 30, y: 45, z: 0}
 --- !u!1 &1866251792
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,15 +352,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76e56385477859f44a94b6edf7133d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endingTilePrefab: {fileID: 3111371753893441920, guid: 9d2d5502b02481948874b7568a1f1c1b, type: 3}
-  startingTilePrefab: {fileID: 3111371753893441920, guid: 0c9ff27bf1698a349a39e3d8f8237be7, type: 3}
-  safeTilePrefab: {fileID: 3111371753893441920, guid: 1cb593fb638c05e43aabe6e42edfed1e, type: 3}
-  breakableTilePrefab: {fileID: 6298263993392802659, guid: 0bb1216be30f51748b9ceae705959931, type: 3}
-  dangerousTilePrefab: {fileID: 2563976910613314003, guid: 4cc5b42ea58d0da4db6d346aca6a5b23, type: 3}
+  endingTilePrefab: {fileID: 3287564821256713915, guid: 2d4f43e4da6061640b82be577ad96191, type: 3}
+  startingTilePrefab: {fileID: 6412587750073974122, guid: 8f1a848ec523d814a9e419df63263c61, type: 3}
+  safeTilePrefab: {fileID: 4372006742249133979, guid: 36fa4516b2902604a8779d0dc4f31d08, type: 3}
+  breakableTilePrefab: {fileID: 7479974048622801397, guid: 6af395f6fbee99a41a457157b4b05ad9, type: 3}
+  dangerousTilePrefab: {fileID: 1399245378470646431, guid: e82819b79aca7e94dbb53833921d18f0, type: 3}
+  spikePrefab: {fileID: 5613569921831135915, guid: 1103a961e5ef61845b49df1aec7fe7f2, type: 3}
   playerObj: {fileID: 6803664149494181677, guid: df60fc3320b592045af41130d104bbc7, type: 3}
+  playerInstance: {fileID: 0}
   enemyObj: {fileID: 8763015984500235039, guid: 224478b9f2b314b4cbcddca20bf2ed0b, type: 3}
-  rows: 15
-  cols: 15
+  invincibilityItem: {fileID: 726947031651978277, guid: dda4f78d22c83234c9168ad89e93175b, type: 3}
+  stopEnemiesItem: {fileID: 2839482944895934988, guid: 5ea1eb99addbb8a47bfb84bad1c5d573, type: 3}
+  rows: 5
+  cols: 5
   difficulty: easy
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

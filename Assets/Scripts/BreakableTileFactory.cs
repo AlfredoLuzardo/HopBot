@@ -3,6 +3,7 @@ using UnityEngine;
 /// <summary>
 /// Author: Alfredo Luzardo A01379913
 /// Represents a factory for Breakable Tile
+/// version 1.1
 /// </summary>
 public class BreakableTileFactory : TileFactory
 {
@@ -12,6 +13,12 @@ public class BreakableTileFactory : TileFactory
     /// <returns></returns>
     public Tile CreateTile()
     {
-        return new BreakableTile();
+        GameObject newTileObject;
+        BreakableTile breakableTile; 
+
+        newTileObject = new GameObject("BreakableTile");
+        breakableTile = newTileObject.AddComponent<BreakableTile>();
+
+        return breakableTile;
     }
 }
