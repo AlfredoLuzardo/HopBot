@@ -5,6 +5,7 @@ using UnityEngine;
 /// Author: Alfredo Luzardo A01379913
 /// References: https://www.youtube.com/watch?v=9eTZqxxgGz8
 /// Implements the enemy behaviour.
+/// version 1.4
 /// </summary>
 public class EnemyBehaviour : MonoBehaviour, Harmful
 {
@@ -54,14 +55,31 @@ public class EnemyBehaviour : MonoBehaviour, Harmful
     /// </summary>
     public void Update()
     {
+        PreventTripping();
         if(isAllowed)
         {
             Vector3 direction;
-            
-            transform.position = Vector3.MoveTowards(transform.position, Target.transform.position, 1f * Time.deltaTime);
+            Quaternion lookRotation;
+
+            direction = (Target.transform.position - transform.position).normalized;
+            direction.y = 0f;
+            lookRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+
             direction = (Target.transform.position - transform.position).normalized;
             rb.MovePosition(transform.position + direction * speed * Time.fixedDeltaTime);
         }
+    }
+
+    /// <summary>
+    /// Prevent the player falling down
+    /// </summary>
+    private void PreventTripping()
+    {
+        Quaternion currentRotation;
+        
+        currentRotation = transform.rotation;
+        transform.rotation = Quaternion.Euler(0, currentRotation.eulerAngles.y, 0);
     }
 
     /// <summary>

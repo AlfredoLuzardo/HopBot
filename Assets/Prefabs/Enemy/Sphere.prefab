@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7731826346190467785}
   - component: {fileID: 1201337630921101069}
   m_Layer: 0
-  m_Name: DangerousTilePrefab
+  m_Name: Sphere
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -149,6 +149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf646a92860b09f48aea48ced5c75b86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 6803664149494181677, guid: df60fc3320b592045af41130d104bbc7, type: 3}
+  Target: {fileID: 6646035857168535662, guid: f974d2201b3c4e84c906b1d4b30c071a, type: 3}
   distance: 0
   speed: 3
