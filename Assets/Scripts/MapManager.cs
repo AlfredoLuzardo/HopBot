@@ -137,7 +137,7 @@ public class MapManager : MonoBehaviour
             {
                 playerPos = new Vector3(x, 1, y);
                 playerInstance = Instantiate(playerObj, playerPos, Quaternion.identity);
-                playerInstance.AddComponent<PlayerHealth>();
+                // playerInstance.AddComponent<PlayerHealth>();
             }
             else if(safeTile.GetIsEnd())
             {
@@ -155,12 +155,12 @@ public class MapManager : MonoBehaviour
                 if(num > 95)
                 {
                     safeTile.SpawnItem(invincibilityItem);
-                    safeTile.GetItem().AddComponent<Invincibility>();
+                    // safeTile.GetItem().AddComponent<ItemInvincibility>();
                 }
                 else if(num > 90)
                 {
                     safeTile.SpawnItem(stopEnemiesItem);
-                    safeTile.GetItem().AddComponent<StopEnemies>();
+                    // safeTile.GetItem().AddComponent<ItemStopEnemies>();
                 }
             }
         }

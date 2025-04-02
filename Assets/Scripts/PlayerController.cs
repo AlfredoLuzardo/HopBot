@@ -8,12 +8,16 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float jumpPower = 5;
+    public float movementSpeed = 2f;
     public GameObject directionArrow;
+    public Vector3 lastTileStepped;
     private Rigidbody rb;
     private Camera mainCamera;
     private bool isJumping = false;
     private bool isGrounded = false;
     private int groundCount = 0;
+
+    public bool GetIsGrounded() => isGrounded;
     
     /// <summary>
     /// Initializes the rigidbody, and the main camera
@@ -32,7 +36,6 @@ public class PlayerController : MonoBehaviour
         PreventTripping();
         UpdateDirectionArrow();
         HandleBotMovement();
-        Debug.Log("ground count: " + groundCount);
 
         if (isGrounded && !isJumping)
         {
@@ -92,7 +95,8 @@ public class PlayerController : MonoBehaviour
                 targetPosition = ray.GetPoint(enter);
             }
 
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, 2f * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position,
+                targetPosition, movementSpeed * Time.deltaTime);
         }
     }
 
@@ -110,6 +114,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void LaunchPlayer()
     {
+        Debug.Log("speed" + rb.linearVelocity);
         rb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
         isGrounded = false;
     }
@@ -127,6 +132,9 @@ public class PlayerController : MonoBehaviour
             {
                 isGrounded = true;
                 isJumping = false;
+                lastTileStepped = transform.position;
+
+                rb.linearVelocity = Vector3.zero;
             }
         }
     }
