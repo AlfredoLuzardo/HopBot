@@ -35,7 +35,7 @@ public class DangerousTile : Tile
 
         spikeSize = spikePrefab.transform.localScale.x;
         tileSize = this.transform.localScale.x;
-        maxOffset = (tileSize - spikeSize) / 2;
+        maxOffset = (tileSize - spikeSize * 0.5f) / 2;
 
         offsetX = Random.Range(-maxOffset, maxOffset);
         offsetY = Random.Range(-maxOffset, maxOffset);
@@ -44,7 +44,7 @@ public class DangerousTile : Tile
 
         spikePosition = new Vector3(
             GetPositionX() + offsetX, 
-            (spikeHeight / 2) + (TILE_HEIGHT / 2), 
+            0.3f + TILE_HEIGHT / 2, 
             GetPositionY() + offsetY);
 
         spike = Instantiate(spikePrefab, spikePosition, Quaternion.identity);
