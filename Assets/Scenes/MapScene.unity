@@ -2666,7 +2666,7 @@ MonoBehaviour:
   safeTilePrefab: {fileID: 4372006742249133979, guid: 36fa4516b2902604a8779d0dc4f31d08, type: 3}
   breakableTilePrefab: {fileID: 7479974048622801397, guid: 6af395f6fbee99a41a457157b4b05ad9, type: 3}
   dangerousTilePrefab: {fileID: 1399245378470646431, guid: e82819b79aca7e94dbb53833921d18f0, type: 3}
-  spikePrefab: {fileID: 5613569921831135915, guid: 1103a961e5ef61845b49df1aec7fe7f2, type: 3}
+  spikePrefab: {fileID: 7946317875777966380, guid: 73ddef0399ea2f94ea5dc423e555cf58, type: 3}
   playerObj: {fileID: 6646035857168535662, guid: f974d2201b3c4e84c906b1d4b30c071a, type: 3}
   playerInstance: {fileID: 0}
   enemyObj: {fileID: 8763015984500235039, guid: 224478b9f2b314b4cbcddca20bf2ed0b, type: 3}

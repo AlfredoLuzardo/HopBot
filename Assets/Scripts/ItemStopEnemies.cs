@@ -8,7 +8,7 @@ using System.Collections;
 ///             https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Coroutine.html
 /// version 1.1
 /// </summary>
-public class StopEnemies : Item
+public class ItemStopEnemies : Item
 {
     private float duration = 2f;
     private Collider itemCollider;

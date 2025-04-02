@@ -8,9 +8,8 @@ using System.Collections;
 ///             https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Coroutine.html 
 // version 1.2
 /// </summary>
-public class Invincibility : Item
+public class ItemInvincibility : Item
 {
-    private float duration = 2f;
     private Collider itemCollider;
     private MeshRenderer itemRenderer;
 
@@ -42,28 +41,13 @@ public class Invincibility : Item
 
             health = other.gameObject.GetComponent<PlayerHealth>();
 
-            health.SetInvincible();
+            health.BecomeInvincible(4f);
 
             Debug.Log("INVINCIBLE");
-
-            StartCoroutine(ResumeVincibility(health));
             
             itemCollider.enabled = false;
             itemRenderer.enabled = false;
         }
     }
 
-    /// <summary>
-    /// Waits for a num of seconds, then resumes vincibility.
-    /// </summary>
-    /// <param name="health"></param>
-    /// <returns></returns>
-    private IEnumerator ResumeVincibility(PlayerHealth health)
-    {
-        yield return new WaitForSeconds(duration);
-
-        health.SetVincible();
-
-        Debug.Log("NOT INVINCIBLE");
-    }
 }
