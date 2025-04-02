@@ -19,8 +19,15 @@ public class StopEnemies : Item
     /// </summary>
     private void Start()
     {
+        Transform child;
+
+        child = transform.GetChild(0);
         itemCollider = GetComponent<Collider>();
-        itemRenderer = GetComponent<MeshRenderer>();
+        
+        if(child != null)
+        {
+            itemRenderer = child.GetComponent<MeshRenderer>();
+        }
     }
 
     /// <summary>

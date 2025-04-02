@@ -107,6 +107,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5d73991839aaed4b9add0a3ca0be404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directionArrow: {fileID: 0}
-  angleArrow: {fileID: 0}
-  gaugeArrow: {fileID: 0}
+  directionArrow: {fileID: 919132149155446097, guid: 78d24519dc3cadb41b3e167c9ac788e5, type: 3}
