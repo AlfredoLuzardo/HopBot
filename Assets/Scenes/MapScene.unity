@@ -459,8 +459,8 @@ MonoBehaviour:
   playerObj: {fileID: 6646035857168535662, guid: f974d2201b3c4e84c906b1d4b30c071a, type: 3}
   playerInstance: {fileID: 0}
   enemyObj: {fileID: 8763015984500235039, guid: 224478b9f2b314b4cbcddca20bf2ed0b, type: 3}
-  invincibilityItem: {fileID: 726947031651978277, guid: dda4f78d22c83234c9168ad89e93175b, type: 3}
-  stopEnemiesItem: {fileID: 2839482944895934988, guid: 5ea1eb99addbb8a47bfb84bad1c5d573, type: 3}
+  invincibilityItem: {fileID: 1172477848406256172, guid: ef0ed799aeaf6a6408debeb05c5cc8f1, type: 3}
+  stopEnemiesItem: {fileID: 6576564545371249691, guid: d52db2fce173b814a873af2e154e56fb, type: 3}
   rows: 5
   cols: 5
   difficulty: easy
@@ -478,6 +478,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minRadius: 2
   maxRadius: 5
+  mainCamera: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

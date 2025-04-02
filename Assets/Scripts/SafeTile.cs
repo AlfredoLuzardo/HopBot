@@ -74,7 +74,7 @@ public class SafeTile : Tile
                                    GetPositionX(), 
                                    0.5f, 
                                    GetPositionY()), 
-                               Quaternion.identity);
+                               itemPrefab.transform.rotation);
         }
     }
 
