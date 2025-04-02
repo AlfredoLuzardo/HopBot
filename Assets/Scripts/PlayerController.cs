@@ -7,11 +7,13 @@ using UnityEngine;
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
+    public float jumpPower = 5;
     public GameObject directionArrow;
     private Rigidbody rb;
     private Camera mainCamera;
-    private bool isGrounded = false;
     private bool isJumping = false;
+    private bool isGrounded = false;
+    private int groundCount = 0;
     
     /// <summary>
     /// Initializes the rigidbody, and the main camera
@@ -30,6 +32,7 @@ public class PlayerController : MonoBehaviour
         PreventTripping();
         UpdateDirectionArrow();
         HandleBotMovement();
+        Debug.Log("ground count: " + groundCount);
 
         if (isGrounded && !isJumping)
         {
@@ -41,7 +44,6 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Keeps the direction arrow around the player and points it towards the mouse cursor.
     /// </summary>
-    // void UpdateDirectionArrow()
     private void UpdateDirectionArrow()
     {
         Plane groundPlane;
@@ -49,29 +51,27 @@ public class PlayerController : MonoBehaviour
         Vector3 targetPoint;
         Vector3 direction;
         
-        groundPlane = new Plane(Vector3.up, transform.position); // Plane at player's height
+        groundPlane = new Plane(Vector3.up, transform.position);
         ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 
-        targetPoint = transform.position + transform.forward * 10f; // Default target if no intersection
+        targetPoint = transform.position + transform.forward * 10f;
 
         if (groundPlane.Raycast(ray, out float enter))
         {
-            targetPoint = ray.GetPoint(enter); // Project onto the plane
+            targetPoint = ray.GetPoint(enter);
         }
 
         direction = targetPoint - transform.position;
-        direction.y = 0; // Keep horizontal
+        direction.y = 0;
 
-        if (direction.sqrMagnitude > 0.5f) // Prevent flickering
+        if (direction.sqrMagnitude > 0.5f)
         {
             directionArrow.transform.rotation = Quaternion.LookRotation(direction);
         }
 
-        directionArrow.transform.position = transform.position + direction.normalized * 1f; // Slight offset forward
+        directionArrow.transform.position = transform.position + direction.normalized * 1f;
         transform.rotation = Quaternion.LookRotation(direction);
     }
-
-
 
     /// <summary>
     /// Moves the player towards the mouse cursor when Ctrl is held.
@@ -83,11 +83,11 @@ public class PlayerController : MonoBehaviour
             Plane groundPlane = new Plane(Vector3.up, transform.position);
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 
-            Vector3 targetPosition = transform.position + transform.forward * 10f; // Default movement target
+            Vector3 targetPosition = transform.position + transform.forward * 10f;
 
             if (groundPlane.Raycast(ray, out float enter))
             {
-                targetPosition = ray.GetPoint(enter); // Project onto the ground plane
+                targetPosition = ray.GetPoint(enter);
             }
 
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, 2f * Time.deltaTime);
@@ -108,22 +108,41 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void LaunchPlayer()
     {
-        float power = 5;
-        
-        rb.AddForce(Vector3.up * power, ForceMode.Impulse); // Fixed jump force
+        rb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
         isGrounded = false;
     }
 
     /// <summary>
     /// Check if the player is contacting the tile
     /// </summary>
-    /// <param name="other"></param>
+    /// <param name="other">Mostly tiles</param>
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Tile"))
         {
-            isGrounded = true;
-            isJumping = false;
+            groundCount++;
+            if(groundCount == 1)
+            {
+                isGrounded = true;
+                isJumping = false;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Check if the player is leaving the tile
+    /// </summary>
+    /// <param name="other">Mostly tiles</param>
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.CompareTag("Tile"))
+        {
+            groundCount--;
+            if(groundCount <= 0)
+            {
+                groundCount = 0;
+                isGrounded = false;
+            }
         }
     }
 }
