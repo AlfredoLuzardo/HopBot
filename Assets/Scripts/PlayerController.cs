@@ -69,7 +69,6 @@ public class PlayerController : MonoBehaviour
             directionArrow.transform.rotation = Quaternion.LookRotation(direction);
         }
 
-        directionArrow.transform.position = transform.position + direction.normalized * 1f;
         transform.rotation = Quaternion.LookRotation(direction);
     }
 
@@ -80,10 +79,13 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
         {
-            Plane groundPlane = new Plane(Vector3.up, transform.position);
-            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            Plane groundPlane;
+            Ray ray;
+            Vector3 targetPosition;
 
-            Vector3 targetPosition = transform.position + transform.forward * 10f;
+            groundPlane     = new Plane(Vector3.up, transform.position);
+            ray             = mainCamera.ScreenPointToRay(Input.mousePosition);
+            targetPosition = transform.position + transform.forward * 10f;
 
             if (groundPlane.Raycast(ray, out float enter))
             {

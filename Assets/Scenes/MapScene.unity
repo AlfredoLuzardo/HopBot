@@ -415,6 +415,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1866251793}
   - component: {fileID: 1866251794}
+  - component: {fileID: 1866251795}
   m_Layer: 0
   m_Name: MapManager
   m_TagString: Untagged
@@ -455,7 +456,7 @@ MonoBehaviour:
   breakableTilePrefab: {fileID: 7479974048622801397, guid: 6af395f6fbee99a41a457157b4b05ad9, type: 3}
   dangerousTilePrefab: {fileID: 1399245378470646431, guid: e82819b79aca7e94dbb53833921d18f0, type: 3}
   spikePrefab: {fileID: 5613569921831135915, guid: 1103a961e5ef61845b49df1aec7fe7f2, type: 3}
-  playerObj: {fileID: 6803664149494181677, guid: df60fc3320b592045af41130d104bbc7, type: 3}
+  playerObj: {fileID: 6646035857168535662, guid: f974d2201b3c4e84c906b1d4b30c071a, type: 3}
   playerInstance: {fileID: 0}
   enemyObj: {fileID: 8763015984500235039, guid: 224478b9f2b314b4cbcddca20bf2ed0b, type: 3}
   invincibilityItem: {fileID: 726947031651978277, guid: dda4f78d22c83234c9168ad89e93175b, type: 3}
@@ -463,6 +464,20 @@ MonoBehaviour:
   rows: 5
   cols: 5
   difficulty: easy
+--- !u!114 &1866251795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866251792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23fdb7774d8cf264fac19dcf8296a583, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minRadius: 2
+  maxRadius: 5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
