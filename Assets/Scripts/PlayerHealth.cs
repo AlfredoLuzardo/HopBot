@@ -54,6 +54,7 @@ public class PlayerHealth : MonoBehaviour
         {
             Debug.Log("GAME OVER");
             // Switch scenes
+            FindFirstObjectByType<LoseMenu>().GameLost();
         }
     }
 
