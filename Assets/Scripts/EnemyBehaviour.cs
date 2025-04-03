@@ -104,7 +104,17 @@ public class EnemyBehaviour : MonoBehaviour, Harmful
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            attack(collision.gameObject);
+            GameObject player = collision.gameObject;
+            PlayerController playerController = player.GetComponent<PlayerController>();
+            if (playerController == null)
+            {
+                Debug.LogWarning("PlayerController component not found on Player.");
+                return;
+            }
+
+            Vector3 knockbackDirection = (player.transform.position - transform.position).normalized;
+
+            attack(player);
         }
     }
 
@@ -121,7 +131,7 @@ public class EnemyBehaviour : MonoBehaviour, Harmful
 
         if(health != null)
         {
-            health.TakeDamage(damage);
+            health.TakeDamage(damage, transform.position);
             Debug.Log("PLAYER HEALTH AFTER: " + health.GetHealth());
         }
         else
