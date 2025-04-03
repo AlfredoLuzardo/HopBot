@@ -126,6 +126,9 @@ MonoBehaviour:
   directionArrow: {fileID: 7560453780381773186}
   lastTileStepped: {x: 0, y: 0, z: 0}
   currentPosition: {x: 0, y: 0, z: 0}
+  isJumping: 0
+  isGrounded: 0
+  groundCount: 0
 --- !u!114 &-3925122121106445036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +141,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f21aefd1a9ce01f42bb7b79099f87838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockbackForce: 2
+  knockbackAngle: 45
+  flickerColor: {r: 1, g: 0, b: 0, a: 0}
 --- !u!114 &1478571232656947728
 MonoBehaviour:
   m_ObjectHideFlags: 0

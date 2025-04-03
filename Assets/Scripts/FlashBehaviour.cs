@@ -77,4 +77,37 @@ public class FlashBehaviour : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// Flicker the player onc with the duration specified
+    /// </summary>
+    /// <param name="duration"></param>
+    /// <param name="color"></param>
+    /// <returns></returns>
+    public IEnumerator FlickerCoroutine(float duration, Color color)
+    {
+        List<Color> originalColors;
+
+        originalColors = new List<Color>();
+
+        foreach (Renderer renderer in modelRenderer)
+        {
+            originalColors.Add(renderer.material.color);
+        }
+
+        for (int i = 0; i < modelRenderer.Count; i++)
+        {
+            modelRenderer[i].material.color = color;
+        }
+
+        yield return new WaitForSeconds(duration);
+
+        foreach (Renderer renderer in modelRenderer)
+        {
+            if (renderer != null)
+            {
+                renderer.material.color = originalColors[modelRenderer.IndexOf(renderer)];
+            }
+        }
+    }
 }

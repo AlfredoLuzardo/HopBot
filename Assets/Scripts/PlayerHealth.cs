@@ -4,17 +4,19 @@ using System.Collections;
 /// <summary>
 /// Author: Alfredo Luzardo A01379913
 /// Represents a player
-/// version 1.0
+/// version 1.1
 /// </summary>
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private float knockbackForce = 2f; // Adjusted default, tune as needed
-    [SerializeField] private float knockbackAngle = 45f; // Adjusted default, tune as needed
+    [SerializeField] private float knockbackForce = 2f;
+    [SerializeField] private float knockbackAngle = 45f;
+    [SerializeField] private Color flickerColor; 
     private static int health;
     private bool isInvincible;
     private Rigidbody rb;
     private PlayerController playerController;
     private FlashBehaviour flashBehaviour;
+   
 
     /// <summary>
     /// Getter for health
@@ -77,7 +79,31 @@ public class PlayerHealth : MonoBehaviour
         {
             health = health - damage;
             ValidateHealth();
+            DamageFlicker();
             BecomeInvincible(2f);
+        }
+    }
+
+    /// <summary>
+    /// Damage flicker calls the coroutine flicker
+    /// </summary> 
+    private void DamageFlicker()
+    {
+        if (flashBehaviour != null)
+        {
+            StartCoroutine(Flicker());
+        }    
+    }
+
+    /// <summary>
+    /// Flicker coroutine.
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator Flicker()
+    {
+        if (flashBehaviour != null)
+        {
+           yield return flashBehaviour.FlickerCoroutine(0.5f, flickerColor);
         }
     }
 

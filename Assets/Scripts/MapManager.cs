@@ -156,13 +156,13 @@ public class MapManager : MonoBehaviour
             {
                 float num;
 
-                num = Random.Range(0, 100);
+                num = Random.Range(0, 1000);
 
-                if(num > 95)
+                if(num > 950)
                 {
                     safeTile.SpawnItem(invincibilityItem);
                 }
-                else if(num > 90)
+                else if(num > 900)
                 {
                     safeTile.SpawnItem(stopEnemiesItem);
                 }
