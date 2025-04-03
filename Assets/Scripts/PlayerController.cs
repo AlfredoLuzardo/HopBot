@@ -42,12 +42,11 @@ public class PlayerController : MonoBehaviour
         HandleBotMovement();
 
         currentPosition = transform.position;
-        Debug.Log("Current Position: " + currentPosition);
         if(currentPosition.y <= fallThreshold)
         {
             FindFirstObjectByType<LoseMenu>().GameLost();
         }
-        
+
         if (isGrounded && !isJumping && !disableAutoLaunch)
         {
             LaunchPlayer();

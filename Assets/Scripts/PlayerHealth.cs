@@ -10,7 +10,6 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private float knockbackForce = 2f; // Adjusted default, tune as needed
     [SerializeField] private float knockbackAngle = 45f; // Adjusted default, tune as needed
-    [SerializeField] private float invincibilityDuration = 2f;
     private static int health;
     private bool isInvincible;
     private Rigidbody rb;
