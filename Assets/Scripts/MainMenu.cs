@@ -7,8 +7,10 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class MainMenu : MonoBehaviour
 {
-    // public int currentLevel = 0;
-    // public int currentGameScore = 0;
+
+    /// <summary>
+    /// 
+    /// </summary>
     public void PlayGame()
     {
         if(GameManager.Instance != null)
@@ -19,18 +21,7 @@ public class MainMenu : MonoBehaviour
         {
             Debug.LogError("GameManager instance not found.");
         }
-        // SceneManager.LoadSceneAsync("MapScene");
     }
-
-    // public void AppendWonScore(int newScore)
-    // {
-    //     currentGameScore = newScore;
-    // }
-
-    // public void IncrementLevel()
-    // {
-    //     currentLevel++;
-    // }
 
     public void QuitGame()
     {
@@ -40,12 +31,10 @@ public class MainMenu : MonoBehaviour
         }
         else
         {
-            // Fallback if GameManager doesn't exist for some reason
             Application.Quit();
             #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
             #endif
         }
-        // Application.Quit();
     }
 }

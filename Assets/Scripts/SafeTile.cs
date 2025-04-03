@@ -93,6 +93,10 @@ public class SafeTile : Tile
         }
     }
 
+    /// <summary>
+    /// Calculates the score
+    /// </summary>
+    /// <returns></returns>
     public int CalculateScore(){
         Timer timer = GameObject.FindFirstObjectByType<Timer>();
         if (timer == null)
@@ -107,7 +111,7 @@ public class SafeTile : Tile
 
         if (remainingTime >= initialTimeLimit - 5) 
         {
-            score = 1000; // Full score if completed within the first 5 sec
+            score = 1000;
         }
         else
         {

@@ -1,61 +1,85 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Author: Alex Choi
+/// </summary>
 public class GameManager : MonoBehaviour
 {
-    // Singleton instance
     public static GameManager Instance { get; private set; }
-
-    // Data to persist
     public int currentLevel = 0;
-    public int currentGameScore = 0; // Consider if this should be total score or last level's score
+    public int currentGameScore = 0;
 
+    /// <summary>
+    /// Awake method
+    /// </summary>
     private void Awake()
     {
-        // Singleton pattern implementation
+        
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Make this GameObject persist across scenes
+            DontDestroyOnLoad(gameObject); 
         }
         else if (Instance != this)
         {
-            Destroy(gameObject); // Destroy duplicate instances
+            Destroy(gameObject);
         }
     }
 
+    /// <summary>
+    /// Start method
+    /// </summary>
     public void StartNewGame()
     {
         currentLevel = 0;
-        currentGameScore = 0; // Reset score for a new game
+        currentGameScore = 0;
         GoToNextLevel();
     }
 
+    /// <summary>
+    /// Go to the next level
+    /// </summary>
     public void GoToNextLevel()
     {
         currentLevel++;
-        // Reset score for the *new* level if needed, or keep accumulating
-        // currentGameScore = 0; // Uncomment if score resets per level
         SceneManager.LoadSceneAsync("MapScene");
     }
 
-    public void AppendWonScore(int newScore)
+    /// <summary>
+    /// Resets the level
+    /// </summary>
+    public void ResetLevel()
     {
-        // Decide if you want to *add* to the score or *replace* it
-        // currentGameScore += newScore; // To accumulate score across levels
-        currentGameScore += newScore; // To store only the last won score
+        currentLevel = 1;
+        currentGameScore = 0;
     }
 
+    /// <summary>
+    /// Appends the won score
+    /// </summary>
+    /// <param name="newScore"></param>
+    public void AppendWonScore(int newScore)
+    {
+        currentGameScore += newScore;
+    }
+
+    /// <summary>
+    /// Returns to the main menu
+    /// </summary>
     public void ReturnToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
     }
 
+    /// <summary>
+    /// Quits the game
+    /// </summary>
     public void QuitGame()
     {
         Application.Quit();
         #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false; // Also stop play mode in editor
+        UnityEditor.EditorApplication.isPlaying = false;
         #endif
     }
 }

@@ -32,7 +32,7 @@ public class LoseMenu : MonoBehaviour
     public void playAgain()
     {
         Time.timeScale = 1f;
-        // SceneManager.LoadScene("MapScene");
+        GameManager.Instance.ResetLevel();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -42,7 +42,6 @@ public class LoseMenu : MonoBehaviour
     public void goMainMenu()
     {
         Time.timeScale = 1f;
-        // SceneManager.LoadScene("MainMenu");
         if (GameManager.Instance != null)
          {
              GameManager.Instance.ReturnToMainMenu();
@@ -50,7 +49,6 @@ public class LoseMenu : MonoBehaviour
          else
          {
               Debug.LogError("GameManager Instance not found! Cannot go to main menu.");
-              // Fallback: Load main menu directly
               SceneManager.LoadScene("MainMenu");
          }
     }

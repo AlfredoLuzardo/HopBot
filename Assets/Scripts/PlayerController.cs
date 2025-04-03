@@ -185,6 +185,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Sets the disableAutoLaunch variable to true or false.
+    /// </summary>
+    /// <param name="value"></param>
     public void SetDisableAutoLaunch(bool value)
     {
 
@@ -200,6 +204,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Enables auto launch
+    /// </summary>
     private void EnableAutoLaunch()
     {
         disableAutoLaunch = false;

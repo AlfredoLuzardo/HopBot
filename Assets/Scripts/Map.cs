@@ -12,11 +12,11 @@ namespace HopBotNamespace
         const double noTilePercEasy         = 0.2;
         const double safeTilePercEasy       = 0.8;
         const double breakTilePercEasy      = 0.9;
-        const int tileDurabilityEasy        = 6;
+        const int tileDurabilityEasy        = 3;
         const double noTilePercMedium       = 0.2;
         const double safeTilePercMedium     = 0.6;
         const double breakTilePercMedium    = 0.8;
-        const int tileDurabilityMedium      = 4;
+        const int tileDurabilityMedium      = 2;
         const double noTilePercHard         = 0.2;
         const double safeTilePercHard       = 0.5;
         const double breakTilePercHard      = 0.75;

@@ -1,32 +1,28 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+
+/// <summary>
+/// Author: Alex Choi
+/// Represents a level
+/// version 1.0
+/// </summary>
 public class Level : MonoBehaviour
 {
-    // private int currentLevel = 0;
-    // [SerializeField] Text levelText;
-    // void Start()
-    // {
-    //     MainMenu mainMenu = GetComponent<MainMenu>();
-    //     currentLevel = mainMenu.currentLevel;
-    // }
 
-    // void Update()
-    // {
-    //     levelText.text = string.Format("Level {0}", currentLevel);
-    // }
-    public Text levelText; // Assign your legacy Text component here
-    // public TextMeshProUGUI levelText; // Or Assign your TextMeshPro component
-
+    public Text levelText;
+    
+    /// <summary>
+    /// Start method
+    /// </summary>
     void Start()
     {
-         // Initial display
          UpdateLevelText();
     }
 
-    // Update can be inefficient if called every frame.
-    // Call UpdateLevelText() when the scene loads or when the level might change.
-    // Start() is usually sufficient if the level only changes between scenes.
+    /// <summary>
+    /// Updates the level text corresponding to the level
+    /// </summary>
     void UpdateLevelText()
     {
         if (levelText != null && GameManager.Instance != null)
@@ -37,10 +33,9 @@ public class Level : MonoBehaviour
         {
             Debug.LogError("Level Text component not assigned!", this);
         }
-         else // GameManager.Instance == null
+         else
         {
              Debug.LogWarning("GameManager not ready yet for LevelDisplay.");
-             // Optionally display default text or wait
              levelText.text = "Level: ?";
         }
     }

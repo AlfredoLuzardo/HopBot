@@ -82,7 +82,7 @@ public class PlayerHealth : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Become invincible for a certain amount of time.
     /// </summary>
     /// <param name="timeDurationSec"></param>
     public void BecomeInvincible(float timeDurationSec)
@@ -94,6 +94,11 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Become invincible for a certain amount of time and flash the player.
+    /// </summary>
+    /// <param name="timeDurationSec"></param>
+    /// <param name="flashColor"></param>
     public void BecomeInvincible(float timeDurationSec, Color flashColor)
     {
         SetInvincible();
