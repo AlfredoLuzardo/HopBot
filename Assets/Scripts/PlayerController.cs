@@ -15,9 +15,9 @@ public class PlayerController : MonoBehaviour
     public Vector3 currentPosition;
     private Rigidbody rb;
     private Camera mainCamera;
-    private bool isJumping = false;
-    private bool isGrounded = false;
-    private int groundCount = 0;
+    public bool isJumping = false;
+    public bool isGrounded = false;
+    public int groundCount = 0;
     private bool disableAutoLaunch = false;
     
     /// <summary>
@@ -123,7 +123,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Launches the player upwards with a fixed power of 1.
     /// </summary>
-    void LaunchPlayer()
+    public void LaunchPlayer()
     {
         if (rb == null) return;
         rb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviour
     /// Check if the player is contacting the tile
     /// </summary>
     /// <param name="other">Mostly tiles</param>
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Tile"))
         {
