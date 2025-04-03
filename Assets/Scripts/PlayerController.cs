@@ -4,6 +4,7 @@ using UnityEngine;
 /// <summary>
 /// Author: Alex Choi
 /// Handles player movement and launch mechanics.
+/// version 1.0
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
@@ -147,8 +148,8 @@ public class PlayerController : MonoBehaviour
 
                 if (disableAutoLaunch)
                 {
-                    CancelInvoke(nameof(EnableAutoLaunch)); // Use nameof for safety
-                    EnableAutoLaunch(); // Re-enable immediately
+                    CancelInvoke(nameof(EnableAutoLaunch)); 
+                    EnableAutoLaunch(); 
                 }
 
                 SafeTile safeTile = other.GetComponent<SafeTile>();
@@ -161,7 +162,7 @@ public class PlayerController : MonoBehaviour
                 if (rb != null)
                 {
                     rb.linearVelocity = Vector3.zero;
-                    rb.angularVelocity = Vector3.zero; // Also stop rotation
+                    rb.angularVelocity = Vector3.zero; 
                 }
             }
         }
@@ -186,16 +187,15 @@ public class PlayerController : MonoBehaviour
 
     public void SetDisableAutoLaunch(bool value)
     {
-        // Debug.Log($"SetDisableAutoLaunch called with: {value}");
+
         disableAutoLaunch = value;
         if (value)
         {
-            CancelInvoke(nameof(EnableAutoLaunch)); // Cancel previous invokes if called rapidly
-            Invoke(nameof(EnableAutoLaunch), 0.75f); // Increased delay slightly, adjust as needed
+            CancelInvoke(nameof(EnableAutoLaunch));
+            Invoke(nameof(EnableAutoLaunch), 0.75f);
         }
         else
         {
-             // If disabling is explicitly turned off, cancel any pending invoke too.
              CancelInvoke(nameof(EnableAutoLaunch));
         }
     }

@@ -2,17 +2,26 @@ using Unity.VisualScripting.YamlDotNet.Core.Tokens;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Author: Keith Chow
+/// Handles the pause menu
+/// </summary>
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
     public bool isPaused;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
+    /// <summary>
+    /// Start method
+    /// </summary>
     void Start()
     {
         pauseMenu.SetActive(false);
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Update Method
+    /// </summary>
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
@@ -28,6 +37,9 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// PauseGame method
+    /// </summary>
     public void PauseGame()
     {
         pauseMenu.SetActive(true);
@@ -35,6 +47,9 @@ public class PauseMenu : MonoBehaviour
         isPaused = true;
     }
 
+    /// <summary>
+    /// ResumeGame method
+    /// </summary>
     public void ResumeGame()
     {
         pauseMenu.SetActive(false);
@@ -42,6 +57,9 @@ public class PauseMenu : MonoBehaviour
         isPaused = false;
     }
 
+    /// <summary>
+    /// goMainMenu method=
+    /// </summary>
     public void goMainMenu()
     {
         Time.timeScale = 1f;

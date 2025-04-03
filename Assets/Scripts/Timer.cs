@@ -1,17 +1,28 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Author: Alex Choi
+/// Handles timer
+/// version 1.0
+/// </summary>
 public class Timer : MonoBehaviour
 {
-    public float timeLimit = 90F;
+    public float timeLimit = 60F;
     private float initialTimeLimit;
     [SerializeField] Text timerText;
 
+    /// <summary>
+    /// Start method
+    /// </summary>
     void Start()
     {
         initialTimeLimit = timeLimit;
     }
 
+    /// <summary>
+    /// Update method
+    /// </summary>
     void Update()
     {
         timeLimit -= Time.deltaTime;

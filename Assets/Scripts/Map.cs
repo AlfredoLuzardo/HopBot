@@ -63,6 +63,12 @@ namespace HopBotNamespace
         public int GetNumCols() => mapColNum;
 
         /// <summary>
+        /// Getter for the map
+        /// </summary>
+        /// <returns></returns>
+        public Tile[,] GetMap() => map;
+
+        /// <summary>
         /// Fills the rest of the tiles after a path has been generated.
         /// </summary>
         /// <param name="difficulty">

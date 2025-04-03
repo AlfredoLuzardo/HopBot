@@ -12,6 +12,7 @@ public class ItemInvincibility : Item
 {
     private Collider itemCollider;
     private MeshRenderer itemRenderer;
+    [SerializeField] private Color flashColor;
 
     /// <summary>
     /// Start method
@@ -41,7 +42,7 @@ public class ItemInvincibility : Item
 
             health = other.gameObject.GetComponent<PlayerHealth>();
 
-            health.BecomeInvincible(4f);
+            health.BecomeInvincible(4f, flashColor);
 
             Debug.Log("INVINCIBLE");
             

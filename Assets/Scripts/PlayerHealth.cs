@@ -14,6 +14,7 @@ public class PlayerHealth : MonoBehaviour
     private bool isInvincible;
     private Rigidbody rb;
     private PlayerController playerController;
+    private FlashBehaviour flashBehaviour;
 
     /// <summary>
     /// Getter for health
@@ -45,6 +46,7 @@ public class PlayerHealth : MonoBehaviour
         isInvincible = false;
         rb = GetComponent<Rigidbody>();
         playerController = GetComponent<PlayerController>();
+        flashBehaviour = GetComponent<FlashBehaviour>();
 
         if (rb == null) Debug.LogError("PlayerHealth: Rigidbody component not found!");
         if (playerController == null) Debug.LogError("PlayerHealth: PlayerController component not found!");
@@ -91,6 +93,12 @@ public class PlayerHealth : MonoBehaviour
             StartCoroutine(ResumeVincibility(timeDurationSec));
         }
     }
+
+    public void BecomeInvincible(float timeDurationSec, Color flashColor)
+    {
+        SetInvincible();
+        StartCoroutine(ResumeVincibility(timeDurationSec, flashColor));
+    }
     
     /// <summary>
     /// Waits for a num of seconds, then resumes vincibility.
@@ -101,6 +109,18 @@ public class PlayerHealth : MonoBehaviour
     {
         Debug.Log("INVINCIBLE START");
         yield return new WaitForSeconds(timeDurationSec);
+        SetVincible();
+        Debug.Log("NOT INVINCIBLE");
+    }
+
+        /// <summary>
+    /// Waits for a num of seconds, then resumes vincibility.
+    /// </summary>
+    /// <param name="health"></param>
+    /// <returns></returns>
+    private IEnumerator ResumeVincibility(float timeDurationSec, Color flashColor)
+    {
+        yield return flashBehaviour.FlashCouroutine(timeDurationSec, flashColor, 0.8f);
         SetVincible();
         Debug.Log("NOT INVINCIBLE");
     }
@@ -124,24 +144,5 @@ public class PlayerHealth : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
         rb.AddForce(knockbackVector, ForceMode.Impulse);
         playerController.SetDisableAutoLaunch(true);
-
-        Debug.Log($"Knockback applied. Force: {knockbackVector.magnitude}");
-
-        // float knockbackForce = 3f; // needs to access player obj's PlayerController.
-        // float knockbackAngle = 45f;
-
-        // float radianAngle = knockbackAngle * Mathf.Deg2Rad;
-        // Vector3 knockbackVector = new Vector3(impactDirection.x, Mathf.Sin(radianAngle), impactDirection.z) * knockbackForce;
-
-        // // Apply force
-        // rb.linearVelocity = Vector3.zero; // Reset velocity
-        // rb.AddForce(knockbackVector, ForceMode.Impulse);
-
-        // PlayerController controller = GetComponent<PlayerController>();
-        // if(controller != null)
-        // {
-        //     controller.isKnockback = true;
-        //     controller.SetDisableAutoLaunch(true);
-        // }
     }
 }

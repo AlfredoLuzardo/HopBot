@@ -144,3 +144,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f087fee571e02e4bb6cd8bf6034df21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flashColor: {r: 1, g: 0.78070736, b: 0, a: 0}
