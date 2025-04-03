@@ -31,6 +31,7 @@ public class MapManager : MonoBehaviour
     /// </summary>
     public void Start()
     {
+        Time.timeScale = 1f;
         map = new Map(rows, cols);
         map.GenerateMap(difficulty);
         DrawMap();
@@ -52,9 +53,9 @@ public class MapManager : MonoBehaviour
     /// Updates the players instance position
     /// </summary>
     /// <param name="newPosition"></param>
-    public void UpdatePlayerMapPosition(Vector3 newPosition) 
+    void Update()
     {
-        playerPos = newPosition;
+        playerPos = transform.position;
     }
 
     /// <summary>
