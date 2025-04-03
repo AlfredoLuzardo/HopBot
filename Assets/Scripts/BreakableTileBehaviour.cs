@@ -46,6 +46,12 @@ namespace HopBotNamespace
             }
         }
 
+
+        /// <summary>
+        /// Waits for the animation to play
+        /// </summary>
+        /// <param name="anim"></param>
+        /// <returns></returns>
         private IEnumerator WaitForAnimation(Animator anim)
         {
             yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);

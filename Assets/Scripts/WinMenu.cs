@@ -2,14 +2,26 @@ using Codice.Client.BaseCommands;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Author: Keith Chow A01405612
+/// The WinMenu.
+/// version 1.0
+/// </summary>
 public class WinMenu : MonoBehaviour
 {
     public GameObject winMenu;
+    
+    /// <summary>
+    /// Start method 
+    /// </summary>
     void Start()
     {
         winMenu.SetActive(false);
     }
 
+    /// <summary>
+    /// GameWon method
+    /// </summary>
     public void GameWon()
     {
         SafeTile endTile = null;
@@ -46,12 +58,18 @@ public class WinMenu : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// playAgain method
+    /// </summary>
     public void playAgain()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("MapScene");
     }
 
+    /// <summary>
+    /// goMainMenu method
+    /// </summary>
     public void goMainMenu()
     {
         Time.timeScale = 1f;

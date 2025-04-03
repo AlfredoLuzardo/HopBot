@@ -1,6 +1,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Author: Kieth Chow
+/// Handles main menu
+/// </summary>
 public class MainMenu : MonoBehaviour
 {
     public int currentLevel = 0;

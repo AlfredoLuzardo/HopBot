@@ -144,24 +144,5 @@ public class PlayerHealth : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
         rb.AddForce(knockbackVector, ForceMode.Impulse);
         playerController.SetDisableAutoLaunch(true);
-
-        Debug.Log($"Knockback applied. Force: {knockbackVector.magnitude}");
-
-        // float knockbackForce = 3f; // needs to access player obj's PlayerController.
-        // float knockbackAngle = 45f;
-
-        // float radianAngle = knockbackAngle * Mathf.Deg2Rad;
-        // Vector3 knockbackVector = new Vector3(impactDirection.x, Mathf.Sin(radianAngle), impactDirection.z) * knockbackForce;
-
-        // // Apply force
-        // rb.linearVelocity = Vector3.zero; // Reset velocity
-        // rb.AddForce(knockbackVector, ForceMode.Impulse);
-
-        // PlayerController controller = GetComponent<PlayerController>();
-        // if(controller != null)
-        // {
-        //     controller.isKnockback = true;
-        //     controller.SetDisableAutoLaunch(true);
-        // }
     }
 }
