@@ -104,7 +104,11 @@ public class MapManager : MonoBehaviour
 
         if (tile is SafeTile safeTile)
         {
-            if (safeTile.GetIsEnd())
+            if(safeTile.GetIsStart())
+            {
+                prefab = startingTilePrefab;
+            }
+            else if (safeTile.GetIsEnd())
             {
                 prefab = endingTilePrefab;
             }
