@@ -93,12 +93,12 @@ public class SafeTile : Tile
         }
     }
 
-    private void CalculateScore(){
+    public int CalculateScore(){
         Timer timer = GameObject.FindFirstObjectByType<Timer>();
         if (timer == null)
         {
             Debug.LogError("Timer not found in the scene.");
-            return;
+            return 0;
         }
 
         float remainingTime = timer.GetRemainingTime();
@@ -115,6 +115,6 @@ public class SafeTile : Tile
             score = Mathf.Clamp((remainingTime / maxScoreTime) * 1000, 0, 1000);
         }
 
-        Debug.Log($"HIT END TILE - Score: {Mathf.RoundToInt(score)}");
+        return Mathf.RoundToInt(score);
     }
 }

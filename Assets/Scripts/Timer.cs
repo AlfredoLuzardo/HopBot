@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    public float timeLimit = 90F;
+    public float timeLimit = 60F;
     private float initialTimeLimit;
     [SerializeField] Text timerText;
 

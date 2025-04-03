@@ -3,8 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class LoseMenu : MonoBehaviour
 {
-     public GameObject loseMenu;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public GameObject loseMenu;
     void Start()
     {
         loseMenu.SetActive(false);
@@ -19,7 +18,6 @@ public class LoseMenu : MonoBehaviour
     public void playAgain()
     {
         Time.timeScale = 1f;
-        // Debug.Log("Time scale set to 1");
         SceneManager.LoadScene("MapScene");
     }
 

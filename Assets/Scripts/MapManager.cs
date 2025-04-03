@@ -50,6 +50,12 @@ public class MapManager : MonoBehaviour
     public Vector3 GetPlayerPos() => playerPos;
 
     /// <summary>
+    /// Gets the map
+    /// </summary>
+    /// <returns></returns>
+    public Map GetMap() => map;
+
+    /// <summary>
     /// Updates the players instance position
     /// </summary>
     /// <param name="newPosition"></param>
