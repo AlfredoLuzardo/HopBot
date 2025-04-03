@@ -19,6 +19,7 @@ public class LoseMenu : MonoBehaviour
     public void playAgain()
     {
         Time.timeScale = 1f;
+        // Debug.Log("Time scale set to 1");
         SceneManager.LoadScene("MapScene");
     }
 

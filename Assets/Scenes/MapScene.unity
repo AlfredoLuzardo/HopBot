@@ -1991,6 +1991,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4182959607606388658, guid: 4b1b6d99b2222124fb48d1e1a029ace0, type: 3}
+      propertyPath: timeLimit
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 5441503094829926828, guid: 4b1b6d99b2222124fb48d1e1a029ace0, type: 3}
       propertyPath: m_Name
       value: Timer Canvas
@@ -2599,6 +2603,7 @@ MonoBehaviour:
   rows: 7
   cols: 7
   difficulty: easy
+  fallThreshold: -10
 --- !u!114 &1866251795
 MonoBehaviour:
   m_ObjectHideFlags: 0
