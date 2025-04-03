@@ -6,7 +6,7 @@ using System.Collections;
 /// Represents the StopEnemies item
 /// References: https://docs.unity3d.com/6000.0/Documentation/ScriptReference/MonoBehaviour.StartCoroutine.html
 ///             https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Coroutine.html
-/// version 1.1
+/// version 1.2
 /// </summary>
 public class ItemStopEnemies : Item
 {
@@ -19,15 +19,8 @@ public class ItemStopEnemies : Item
     /// </summary>
     private void Start()
     {
-        Transform child;
-
-        child = transform.GetChild(0);
         itemCollider = GetComponent<Collider>();
-        
-        if(child != null)
-        {
-            itemRenderer = child.GetComponent<MeshRenderer>();
-        }
+        itemRenderer = GetComponent<MeshRenderer>();
     }
 
     /// <summary>
@@ -45,6 +38,10 @@ public class ItemStopEnemies : Item
             foreach(EnemyBehaviour enemy in enemies)
             {
                 enemy.SetNotAllowed();
+
+                enemy.GetEmpParticle().Play();
+                Debug.Log("Playing particle system:" + enemy.GetEmpParticle().isPlaying);
+                
             }
 
             StartCoroutine(ResumeEnemies(enemies));
@@ -66,6 +63,8 @@ public class ItemStopEnemies : Item
         foreach(EnemyBehaviour enemy in enemies)
         {
             enemy.SetAllowed();
+            enemy.GetEmpParticle().Stop();
+            Debug.Log("Stopping particle system" + enemy.GetEmpParticle().isPlaying);
         }
     }
 }

@@ -5,10 +5,11 @@ using UnityEngine;
 /// Author: Alfredo Luzardo A01379913
 /// References: https://www.youtube.com/watch?v=9eTZqxxgGz8
 /// Implements the enemy behaviour.
-/// version 1.4
+/// version 1.5
 /// </summary>
 public class EnemyBehaviour : MonoBehaviour, Harmful
 {
+    [SerializeField] ParticleSystem EmpParticle;
     public GameObject Target;
     public float distance;
     public float speed = 1f;
@@ -26,18 +27,31 @@ public class EnemyBehaviour : MonoBehaviour, Harmful
     /// <summary>
     /// Setter for isAllowed to false
     /// </summary>
-    public bool SetNotAllowed() => isAllowed = false;
+    public void SetNotAllowed()
+    {
+        isAllowed = false;
+    }
 
     /// <summary>
     /// Setter for isAllowed to true;
     /// </summary>
-    public bool SetAllowed() => isAllowed = true;
+    public void SetAllowed() => isAllowed = true;
+
+    /// <summary>
+    /// Getter for particleSystem
+    /// </summary>
+    /// <returns></returns>
+    public ParticleSystem GetEmpParticle()
+    {
+        return EmpParticle;
+    }
 
     /// <summary>
     /// Initializes the Rigidbody.
     /// </summary>
     public void Start()
     {
+        EmpParticle = transform.GetChild(14).GetComponent<ParticleSystem>();
         mapManager = FindFirstObjectByType<MapManager>();
         
         if(mapManager.GetPlayerInstance() != null)
