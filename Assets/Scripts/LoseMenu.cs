@@ -32,7 +32,8 @@ public class LoseMenu : MonoBehaviour
     public void playAgain()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MapScene");
+        // SceneManager.LoadScene("MapScene");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     /// <summary>
@@ -41,6 +42,16 @@ public class LoseMenu : MonoBehaviour
     public void goMainMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
+        // SceneManager.LoadScene("MainMenu");
+        if (GameManager.Instance != null)
+         {
+             GameManager.Instance.ReturnToMainMenu();
+         }
+         else
+         {
+              Debug.LogError("GameManager Instance not found! Cannot go to main menu.");
+              // Fallback: Load main menu directly
+              SceneManager.LoadScene("MainMenu");
+         }
     }
 }
