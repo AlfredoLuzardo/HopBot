@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 406823612218705710}
   - component: {fileID: 4709745802971257455}
   - component: {fileID: -3925122121106445036}
+  - component: {fileID: 1478571232656947728}
   m_Layer: 0
   m_Name: HopBot
   m_TagString: Player
@@ -120,7 +121,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpPower: 5
+  movementSpeed: 2
+  fallThreshold: -10
   directionArrow: {fileID: 7560453780381773186}
+  lastTileStepped: {x: 0, y: 0, z: 0}
+  currentPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &-3925122121106445036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,6 +136,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f21aefd1a9ce01f42bb7b79099f87838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1478571232656947728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6646035857168535662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0310d54498d63ad48b7ff2596c8f792b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &708602145455258965
