@@ -19,6 +19,7 @@ public class Timer : MonoBehaviour
         if(timeLimit <= 0)
         {
             timeLimit = 0;
+            FindFirstObjectByType<LoseMenu>().GameLost();
         }
 
         int min = Mathf.FloorToInt(timeLimit / 60);

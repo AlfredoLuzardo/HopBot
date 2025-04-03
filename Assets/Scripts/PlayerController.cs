@@ -9,8 +9,10 @@ public class PlayerController : MonoBehaviour
 {
     public float jumpPower = 5;
     public float movementSpeed = 2f;
+    public float fallThreshold = -10f;
     public GameObject directionArrow;
     public Vector3 lastTileStepped;
+    public Vector3 currentPosition;
     private Rigidbody rb;
     private Camera mainCamera;
     private bool isJumping = false;
@@ -39,6 +41,13 @@ public class PlayerController : MonoBehaviour
         UpdateDirectionArrow();
         HandleBotMovement();
 
+        currentPosition = transform.position;
+        Debug.Log("Current Position: " + currentPosition);
+        if(currentPosition.y <= fallThreshold)
+        {
+            FindFirstObjectByType<LoseMenu>().GameLost();
+        }
+        
         if (isGrounded && !isJumping && !disableAutoLaunch)
         {
             LaunchPlayer();

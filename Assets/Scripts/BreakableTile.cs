@@ -35,6 +35,15 @@ public class BreakableTile : Tile
     }
 
     /// <summary>
+    /// Getter for the tile object
+    /// </summary>
+    /// <returns></returns>
+    public GameObject GetTileObject()
+    {
+        return breakableTile;
+    }
+
+    /// <summary>
     /// Getter for is broken
     /// </summary>
     /// <returns></returns>

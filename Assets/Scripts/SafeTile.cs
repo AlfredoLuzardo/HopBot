@@ -89,6 +89,7 @@ public class SafeTile : Tile
             // log score here
             CalculateScore();
             // switch scenes
+            FindFirstObjectByType<WinMenu>().GameWon();
         }
     }
 

@@ -58,7 +58,6 @@ public class DangerousTile : Tile
     public void SpawnEnemy(GameObject enemyPrefab)
     {
         float enemyHeight;
-
         enemyHeight = enemyPrefab.transform.localScale.y;
 
         Instantiate(enemyPrefab, 

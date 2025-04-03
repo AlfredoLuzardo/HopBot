@@ -5,9 +5,11 @@ using UnityEngine;
 /// Author: Alfredo Luzardo A01379913
 /// References: https://www.youtube.com/watch?v=9eTZqxxgGz8
 /// Implements the enemy behaviour.
+/// version 1.5
 /// </summary>
 public class EnemyBehaviour : MonoBehaviour, Harmful
 {
+    [SerializeField] ParticleSystem EmpParticle;
     public GameObject Target;
     public float distance;
     public float speed = 1f;
@@ -25,18 +27,31 @@ public class EnemyBehaviour : MonoBehaviour, Harmful
     /// <summary>
     /// Setter for isAllowed to false
     /// </summary>
-    public bool SetNotAllowed() => isAllowed = false;
+    public void SetNotAllowed()
+    {
+        isAllowed = false;
+    }
 
     /// <summary>
     /// Setter for isAllowed to true;
     /// </summary>
-    public bool SetAllowed() => isAllowed = true;
+    public void SetAllowed() => isAllowed = true;
+
+    /// <summary>
+    /// Getter for particleSystem
+    /// </summary>
+    /// <returns></returns>
+    public ParticleSystem GetEmpParticle()
+    {
+        return EmpParticle;
+    }
 
     /// <summary>
     /// Initializes the Rigidbody.
     /// </summary>
     public void Start()
     {
+        EmpParticle = transform.GetChild(14).GetComponent<ParticleSystem>();
         mapManager = FindFirstObjectByType<MapManager>();
         
         if(mapManager.GetPlayerInstance() != null)
@@ -54,14 +69,31 @@ public class EnemyBehaviour : MonoBehaviour, Harmful
     /// </summary>
     public void Update()
     {
+        PreventTripping();
         if(isAllowed)
         {
             Vector3 direction;
-            
-            transform.position = Vector3.MoveTowards(transform.position, Target.transform.position, 1f * Time.deltaTime);
+            Quaternion lookRotation;
+
+            direction = (Target.transform.position - transform.position).normalized;
+            direction.y = 0f;
+            lookRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+
             direction = (Target.transform.position - transform.position).normalized;
             rb.MovePosition(transform.position + direction * speed * Time.fixedDeltaTime);
         }
+    }
+
+    /// <summary>
+    /// Prevent the player falling down
+    /// </summary>
+    private void PreventTripping()
+    {
+        Quaternion currentRotation;
+        
+        currentRotation = transform.rotation;
+        transform.rotation = Quaternion.Euler(0, currentRotation.eulerAngles.y, 0);
     }
 
     /// <summary>
