@@ -8,6 +8,9 @@ using System.Collections;
 /// </summary>
 public class PlayerHealth : MonoBehaviour
 {
+    [SerializeField] private float knockbackForce = 2f; // Adjusted default, tune as needed
+    [SerializeField] private float knockbackAngle = 45f; // Adjusted default, tune as needed
+    [SerializeField] private float invincibilityDuration = 2f;
     private static int health;
     private bool isInvincible;
     private Rigidbody rb;
@@ -43,6 +46,9 @@ public class PlayerHealth : MonoBehaviour
         isInvincible = false;
         rb = GetComponent<Rigidbody>();
         playerController = GetComponent<PlayerController>();
+
+        if (rb == null) Debug.LogError("PlayerHealth: Rigidbody component not found!");
+        if (playerController == null) Debug.LogError("PlayerHealth: PlayerController component not found!");
     }
 
     /// <summary>
@@ -54,6 +60,7 @@ public class PlayerHealth : MonoBehaviour
         {
             Debug.Log("GAME OVER");
             // Switch scenes
+            //FindFirstObjectByType<LoseMenu>().GameLost();
         }
     }
 
@@ -61,23 +68,30 @@ public class PlayerHealth : MonoBehaviour
     /// TakeDamage method 
     /// </summary>
     /// <param name="damage"></param>
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, Vector3 spikePos)
     {
+        PushBackFromSpike(spikePos);
+
         if(!isInvincible)
         {
             health = health - damage;
             ValidateHealth();
             BecomeInvincible(2f);
-            PushBackToLastTile();
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="timeDurationSec"></param>
     public void BecomeInvincible(float timeDurationSec)
     {
-        SetInvincible();
-        StartCoroutine(ResumeVincibility(timeDurationSec));
+        if(!isInvincible)
+        {
+            SetInvincible();
+            StartCoroutine(ResumeVincibility(timeDurationSec));
+        }
     }
-
     
     /// <summary>
     /// Waits for a num of seconds, then resumes vincibility.
@@ -86,6 +100,7 @@ public class PlayerHealth : MonoBehaviour
     /// <returns></returns>
     private IEnumerator ResumeVincibility(float timeDurationSec)
     {
+        Debug.Log("INVINCIBLE START");
         yield return new WaitForSeconds(timeDurationSec);
         SetVincible();
         Debug.Log("NOT INVINCIBLE");
@@ -94,41 +109,40 @@ public class PlayerHealth : MonoBehaviour
     /// <summary>
     /// Push the player back to the last tile stepped position.
     /// </summary>
-    private void PushBackToLastTile()
+    private void PushBackFromSpike(Vector3 spikePos)
     {
-        if (playerController == null || rb == null) return;
+        if (rb == null || playerController == null) return;
 
-        // Calculate horizontal direction (XZ plane only, ignoring Y-axis)
-        Vector3 horizontalDirection = (playerController.lastTileStepped - transform.position);
-        horizontalDirection.y = 0; // Remove vertical component
+        Vector3 impactDirectionHorizontal = transform.position - spikePos;
+        impactDirectionHorizontal.y = 0;
+        impactDirectionHorizontal.Normalize();
 
-        float pushForce = 1f;
-        float verticalForce = playerController.jumpPower;
+        float radianAngle = knockbackAngle * Mathf.Deg2Rad;
+        Vector3 verticalComponent = Vector3.up * Mathf.Sin(radianAngle);
+        Vector3 knockbackVector = (impactDirectionHorizontal + verticalComponent).normalized * knockbackForce;
 
-        rb.AddForce(horizontalDirection.normalized * pushForce, ForceMode.Impulse);
-        rb.AddForce(Vector3.up * verticalForce, ForceMode.Impulse);
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        rb.AddForce(knockbackVector, ForceMode.Impulse);
+        playerController.SetDisableAutoLaunch(true);
 
-        StartCoroutine(ClearRepulseVelocity());
-        // rb.linearVelocity = horizontalDirection.normalized * pushForce + Vector3.up * verticalForce;
-    }
+        Debug.Log($"Knockback applied. Force: {knockbackVector.magnitude}");
 
-    /// <summary>
-    /// Waits until the player lands (is grounded) and then zeroes out horizontal velocity.
-    /// </summary>
-    private IEnumerator ClearRepulseVelocity()
-    {
-        // Wait until the player is grounded
-        while (!playerController.GetIsGrounded())
-        {
-            yield return null;
-        }
-        // Small delay to let the landing settle
-        yield return new WaitForSeconds(0.01f);
+        // float knockbackForce = 3f; // needs to access player obj's PlayerController.
+        // float knockbackAngle = 45f;
 
-        // Clear horizontal velocity (keeping any vertical component)
-        Vector3 currentVel = rb.linearVelocity;
-        currentVel.x = 0;
-        currentVel.z = 0;
-        rb.linearVelocity = currentVel;
+        // float radianAngle = knockbackAngle * Mathf.Deg2Rad;
+        // Vector3 knockbackVector = new Vector3(impactDirection.x, Mathf.Sin(radianAngle), impactDirection.z) * knockbackForce;
+
+        // // Apply force
+        // rb.linearVelocity = Vector3.zero; // Reset velocity
+        // rb.AddForce(knockbackVector, ForceMode.Impulse);
+
+        // PlayerController controller = GetComponent<PlayerController>();
+        // if(controller != null)
+        // {
+        //     controller.isKnockback = true;
+        //     controller.SetDisableAutoLaunch(true);
+        // }
     }
 }

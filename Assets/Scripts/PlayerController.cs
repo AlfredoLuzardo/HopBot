@@ -16,8 +16,7 @@ public class PlayerController : MonoBehaviour
     private bool isJumping = false;
     private bool isGrounded = false;
     private int groundCount = 0;
-
-    public bool GetIsGrounded() => isGrounded;
+    private bool disableAutoLaunch = false;
     
     /// <summary>
     /// Initializes the rigidbody, and the main camera
@@ -26,6 +25,9 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         mainCamera = Camera.main;
+        if (rb == null) Debug.LogError("PlayerController: Rigidbody component not found!");
+        if (mainCamera == null) Debug.LogError("PlayerController: Main Camera not found!");
+        if (directionArrow == null) Debug.LogError("PlayerController: Direction Arrow GameObject not assigned!");
     }
 
     /// <summary>
@@ -37,11 +39,12 @@ public class PlayerController : MonoBehaviour
         UpdateDirectionArrow();
         HandleBotMovement();
 
-        if (isGrounded && !isJumping)
+        if (isGrounded && !isJumping && !disableAutoLaunch)
         {
             LaunchPlayer();
             isJumping = true;
         }
+
     }
 
     /// <summary>
@@ -114,9 +117,10 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void LaunchPlayer()
     {
-        Debug.Log("speed" + rb.linearVelocity);
+        if (rb == null) return;
         rb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
         isGrounded = false;
+        groundCount = 0;
     }
 
     /// <summary>
@@ -132,9 +136,25 @@ public class PlayerController : MonoBehaviour
             {
                 isGrounded = true;
                 isJumping = false;
-                lastTileStepped = transform.position;
 
-                rb.linearVelocity = Vector3.zero;
+                if (disableAutoLaunch)
+                {
+                    CancelInvoke(nameof(EnableAutoLaunch)); // Use nameof for safety
+                    EnableAutoLaunch(); // Re-enable immediately
+                }
+
+                SafeTile safeTile = other.GetComponent<SafeTile>();
+
+                if(safeTile != null)
+                {
+                    lastTileStepped = transform.position;
+                }
+
+                if (rb != null)
+                {
+                    rb.linearVelocity = Vector3.zero;
+                    rb.angularVelocity = Vector3.zero; // Also stop rotation
+                }
             }
         }
     }
@@ -154,5 +174,26 @@ public class PlayerController : MonoBehaviour
                 isGrounded = false;
             }
         }
+    }
+
+    public void SetDisableAutoLaunch(bool value)
+    {
+        // Debug.Log($"SetDisableAutoLaunch called with: {value}");
+        disableAutoLaunch = value;
+        if (value)
+        {
+            CancelInvoke(nameof(EnableAutoLaunch)); // Cancel previous invokes if called rapidly
+            Invoke(nameof(EnableAutoLaunch), 0.75f); // Increased delay slightly, adjust as needed
+        }
+        else
+        {
+             // If disabling is explicitly turned off, cancel any pending invoke too.
+             CancelInvoke(nameof(EnableAutoLaunch));
+        }
+    }
+
+    private void EnableAutoLaunch()
+    {
+        disableAutoLaunch = false;
     }
 }
