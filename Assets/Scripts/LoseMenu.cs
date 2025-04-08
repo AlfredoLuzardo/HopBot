@@ -24,7 +24,7 @@ public class LoseMenu : MonoBehaviour
     public void GameLost()
     {
         loseMenu.SetActive(true);
-        // playUI.GetComponent<Canvas>().enabled = false;
+        playUI.SetActive(false);
         Time.timeScale = 0f;
     }
 

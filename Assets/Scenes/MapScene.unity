@@ -447,7 +447,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &219401514
 RectTransform:
   m_ObjectHideFlags: 0
@@ -556,8 +556,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 165.9}
-  m_SizeDelta: {x: 181.9, y: 100}
+  m_AnchoredPosition: {x: 20, y: 165.9}
+  m_SizeDelta: {x: 359.8, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &226960661
 MonoBehaviour:
@@ -3227,6 +3227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   winMenu: {fileID: 166543980}
+  playerHealth: {fileID: 0}
   playUI: {fileID: 1947509107}
   mapManager: {fileID: 0}
 --- !u!114 &1866251797
@@ -3427,6 +3428,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7114b6e71dee6949964efa7744f022c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHealth: {fileID: 0}
+  health: 0
   healthText: {fileID: 1490232731}
 --- !u!1 &2046790626
 GameObject:
