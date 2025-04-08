@@ -11,6 +11,7 @@ public class WinMenu : MonoBehaviour
 {
     public GameObject winMenu;
     public PlayerHealth playerHealth;
+    public GameObject playUI;
     public MapManager mapManager;
     
     /// <summary>
@@ -21,7 +22,7 @@ public class WinMenu : MonoBehaviour
         winMenu.SetActive(false);
         if (mapManager == null) mapManager = FindFirstObjectByType<MapManager>();
         if (mapManager == null) Debug.LogError("MapManager not found in the scene!", this);
-
+        
     }
 
     /// <summary>
@@ -66,6 +67,7 @@ public class WinMenu : MonoBehaviour
                 playerHealth = FindFirstObjectByType<PlayerHealth>();
                 GameManager.Instance.UpdateCurrentHealth(playerHealth.GetHealth());
                 GameManager.Instance.AppendWonScore(score);
+                playUI.SetActive(false);
             }
             else
             {

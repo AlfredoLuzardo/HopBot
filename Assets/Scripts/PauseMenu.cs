@@ -9,6 +9,9 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
+    public GameObject playUI;
+    public GameObject loseMenu;
+    public GameObject winMenu;
     public bool isPaused;
     
     /// <summary>
@@ -24,7 +27,7 @@ public class PauseMenu : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(Input.GetKeyDown(KeyCode.Escape) && !loseMenu.activeSelf && !winMenu.activeSelf)
         {
             if(isPaused)
             {
@@ -43,6 +46,7 @@ public class PauseMenu : MonoBehaviour
     public void PauseGame()
     {
         pauseMenu.SetActive(true);
+        playUI.SetActive(false);
         Time.timeScale = 0f;
         isPaused = true;
     }
@@ -53,6 +57,7 @@ public class PauseMenu : MonoBehaviour
     public void ResumeGame()
     {
         pauseMenu.SetActive(false);
+        playUI.SetActive(true);
         Time.timeScale = 1f;
         isPaused = false;
     }

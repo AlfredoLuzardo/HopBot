@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class LoseMenu : MonoBehaviour
 {
     public GameObject loseMenu;
+    public GameObject playUI;
 
     /// <summary>
     /// Start method
@@ -23,6 +24,7 @@ public class LoseMenu : MonoBehaviour
     public void GameLost()
     {
         loseMenu.SetActive(true);
+        // playUI.GetComponent<Canvas>().enabled = false;
         Time.timeScale = 0f;
     }
 
