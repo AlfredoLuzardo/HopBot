@@ -9,13 +9,13 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public int currentLevel = 0;
     public int currentGameScore = 0;
+    public int currentHealth = 5;
 
     /// <summary>
     /// Awake method
     /// </summary>
     private void Awake()
     {
-        
         if (Instance == null)
         {
             Instance = this;
@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     {
         currentLevel = 0;
         currentGameScore = 0;
+        currentHealth = 5;
         GoToNextLevel();
     }
 
@@ -55,6 +56,11 @@ public class GameManager : MonoBehaviour
         currentGameScore = 0;
     }
 
+    public void ResetHealth()
+    {
+        currentHealth = 5;
+    }
+
     /// <summary>
     /// Appends the won score
     /// </summary>
@@ -62,6 +68,15 @@ public class GameManager : MonoBehaviour
     public void AppendWonScore(int newScore)
     {
         currentGameScore += newScore;
+    }
+
+    /// <summary>
+    /// Update current health by new health value.
+    /// </summary>
+    /// <param name="newHealth"></param>
+    public void UpdateCurrentHealth(int newHealth)
+    {
+        currentHealth = newHealth;
     }
 
     /// <summary>

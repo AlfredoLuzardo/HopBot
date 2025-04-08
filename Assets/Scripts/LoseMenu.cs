@@ -33,6 +33,7 @@ public class LoseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         GameManager.Instance.ResetLevel();
+        GameManager.Instance.ResetHealth();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

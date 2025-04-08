@@ -17,12 +17,12 @@ public class Level : MonoBehaviour
     /// </summary>
     void Start()
     {
-         UpdateLevelText();
+        UpdateLevelText();
     }
 
     /// <summary>
     /// Updates the level text corresponding to the level
-    /// </summary>
+    /// </summary> 
     void UpdateLevelText()
     {
         if (levelText != null && GameManager.Instance != null)
@@ -35,8 +35,8 @@ public class Level : MonoBehaviour
         }
          else
         {
-             Debug.LogWarning("GameManager not ready yet for LevelDisplay.");
-             levelText.text = "Level: ?";
+            Debug.LogWarning("GameManager not ready yet for LevelDisplay.");
+            levelText.text = "Level: ?";
         }
     }
 }

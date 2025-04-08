@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 public class WinMenu : MonoBehaviour
 {
     public GameObject winMenu;
+    public PlayerHealth playerHealth;
     public MapManager mapManager;
     
     /// <summary>
@@ -20,6 +21,7 @@ public class WinMenu : MonoBehaviour
         winMenu.SetActive(false);
         if (mapManager == null) mapManager = FindFirstObjectByType<MapManager>();
         if (mapManager == null) Debug.LogError("MapManager not found in the scene!", this);
+
     }
 
     /// <summary>
@@ -60,6 +62,9 @@ public class WinMenu : MonoBehaviour
 
             if (GameManager.Instance != null)
             {
+                PlayerHealth playerHealth;
+                playerHealth = FindFirstObjectByType<PlayerHealth>();
+                GameManager.Instance.UpdateCurrentHealth(playerHealth.GetHealth());
                 GameManager.Instance.AppendWonScore(score);
             }
             else

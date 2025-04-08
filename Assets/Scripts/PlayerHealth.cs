@@ -44,7 +44,15 @@ public class PlayerHealth : MonoBehaviour
     /// </summary>
     public void Start()
     {
-        health = 5;
+        if(GameManager.Instance != null)
+        {
+            health = GameManager.Instance.currentHealth;
+        }
+        else
+        {
+            Debug.LogError("Failed to access currentHealth from GameManager singleton.");
+        }
+
         isInvincible = false;
         rb = GetComponent<Rigidbody>();
         playerController = GetComponent<PlayerController>();
