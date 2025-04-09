@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using HopBotNamespace;
 
@@ -45,6 +46,23 @@ public class MapManager : MonoBehaviour
                 GameManager.Instance.PlayTheLevelMusic();
             }
         }
+        
+        StartCoroutine(PauseAtGameStart());
+    }
+
+    private IEnumerator PauseAtGameStart()
+    {
+        Time.timeScale = 0f;
+        float pauseTime = 3f;
+        float timer = 0f;
+
+        while (timer < pauseTime)
+        {
+            timer += Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+        Time.timeScale = 1f;
     }
 
     /// <summary>

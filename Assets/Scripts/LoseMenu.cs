@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -42,7 +41,6 @@ public class LoseMenu : MonoBehaviour
         playUI.SetActive(false);
         Time.timeScale = 0f;
     }
-
 
     /// <summary>
     /// play again method

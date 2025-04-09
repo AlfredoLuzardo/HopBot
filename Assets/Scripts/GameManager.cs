@@ -36,6 +36,9 @@ public class GameManager : MonoBehaviour
         audioSource.Play();
     }
 
+    /// <summary>
+    /// Pause the game run music
+    /// </summary>
     public void StopTheLevelMusic()
     {
         audioSource.Stop();
@@ -70,6 +73,9 @@ public class GameManager : MonoBehaviour
         currentGameScore = 0;
     }
 
+    /// <summary>
+    /// Reset the game health
+    /// </summary>
     public void ResetHealth()
     {
         currentHealth = 5;
