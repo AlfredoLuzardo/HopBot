@@ -53,7 +53,7 @@ public class MapManager : MonoBehaviour
     private IEnumerator PauseAtGameStart()
     {
         Time.timeScale = 0f;
-        float pauseTime = 3f;
+        float pauseTime = 1f;
         float timer = 0f;
 
         while (timer < pauseTime)

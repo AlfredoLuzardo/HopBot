@@ -46,7 +46,7 @@ public class NewTestScript
         Assert.IsTrue(playerHealth.GetIsInvincible());
     }
 
-[UnityTest]
+    [UnityTest]
     public IEnumerator PlayerFallsBelowThreshold_GameLost()
     {
         playerController.transform.position = new Vector3(0, -20, 0);

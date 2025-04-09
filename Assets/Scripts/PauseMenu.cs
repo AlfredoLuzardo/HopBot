@@ -1,6 +1,7 @@
 using Unity.VisualScripting.YamlDotNet.Core.Tokens;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /// <summary>
 /// Author: Keith Chow
@@ -12,6 +13,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject playUI;
     public GameObject loseMenu;
     public GameObject winMenu;
+    public GameObject countDownText;
     public bool isPaused;
     
     /// <summary>
@@ -20,6 +22,7 @@ public class PauseMenu : MonoBehaviour
     void Start()
     {
         pauseMenu.SetActive(false);
+        isPaused = false;
     }
 
     /// <summary>
@@ -27,7 +30,10 @@ public class PauseMenu : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape) && !loseMenu.activeSelf && !winMenu.activeSelf)
+        if(Input.GetKeyDown(KeyCode.Escape) &&
+            !loseMenu.activeSelf &&
+            !winMenu.activeSelf &&
+            !countDownText.activeSelf)
         {
             if(isPaused)
             {

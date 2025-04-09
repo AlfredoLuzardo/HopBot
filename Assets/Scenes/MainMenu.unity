@@ -4803,8 +4803,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Move your mouse to decide the direction you want to go and hold control
-    to move. \n\nAvoid enemies and obstacles so you don't take damage.\n"
+  m_text: "Move your mouse to decide the direction you want to go and hold left mouse
+    or control to move. \n\nAvoid enemies and obstacles so you don't take damage.
+    \n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

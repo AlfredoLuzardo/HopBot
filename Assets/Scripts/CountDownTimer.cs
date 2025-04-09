@@ -10,6 +10,7 @@ public class CountdownTimer : MonoBehaviour
     [SerializeField] private Text countdownText;
     private float startFontSize = 100f;
     private float endFontSize = 150f;
+    private float totalDuration = 1f;
 
     private void Start()
     {
@@ -18,28 +19,27 @@ public class CountdownTimer : MonoBehaviour
 
     private IEnumerator StartCountdown()
     {
-        for (int i = 3; i > 0; i--)
+        float elapsed = 0f;
+
+        while (elapsed < totalDuration)
         {
-            countdownText.text = i.ToString();
+            elapsed += Time.unscaledDeltaTime;
+            float remaining = Mathf.Clamp(totalDuration - elapsed, 0f, totalDuration);
+
+            countdownText.text = remaining.ToString("F2");
+            float t = elapsed / totalDuration;
+            float fontSize = Mathf.Lerp(startFontSize, endFontSize, t * t);
+            countdownText.fontSize = Mathf.FloorToInt(fontSize);
             countdownText.color = new Color(1f, 1f, 1f, 1f);
 
-            float elapsed = 0f;
-            while (elapsed < 1f)
-            {
-                elapsed += Time.unscaledDeltaTime;
-                float t = elapsed / 1f;
-                float fontSize = Mathf.Lerp(startFontSize, endFontSize, t * t);
-                countdownText.fontSize = Mathf.FloorToInt(fontSize);
-                yield return null;
-            }
-
-            countdownText.fontSize = Mathf.FloorToInt(startFontSize);
+            yield return null;
         }
 
         countdownText.text = "Go";
         countdownText.fontSize = Mathf.FloorToInt(endFontSize);
         countdownText.color = new Color(1f, 1f, 1f, 1f);
-        yield return new WaitForSeconds(0.5f);
+
+        yield return new WaitForSecondsRealtime(0.5f);
 
         float fadeDuration = 0.5f;
         float fadeElapsed = 0f;
