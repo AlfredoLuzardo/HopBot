@@ -8,7 +8,7 @@ using UnityEngine;
 /// </summary>
 public class SpikeBehaviour : MonoBehaviour, Harmful
 {
-    public int damage = 2;
+    public int damage = 1;
 
     /// <summary>
     /// Detects when the player collides with the spike.
