@@ -8,7 +8,7 @@ using UnityEngine;
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
-    public float jumpPower = 5;
+    public float jumpPower = 6;
     public float movementSpeed = 2f;
     public float fallThreshold = 10f;
     public GameObject directionArrow;

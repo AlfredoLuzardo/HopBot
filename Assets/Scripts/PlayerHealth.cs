@@ -78,9 +78,9 @@ public class PlayerHealth : MonoBehaviour
     /// TakeDamage method 
     /// </summary>
     /// <param name="damage"></param>
-    public void TakeDamage(int damage, Vector3 spikePos)
+    public void TakeDamage(int damage, Vector3 obstaclePos)
     {
-        PushBackFromSpike(spikePos);
+        PushBackFromObstacle(obstaclePos);
 
         if(!isInvincible)
         {
@@ -164,7 +164,7 @@ public class PlayerHealth : MonoBehaviour
     /// <summary>
     /// Push the player back to the last tile stepped position.
     /// </summary>
-    private void PushBackFromSpike(Vector3 spikePos)
+    private void PushBackFromObstacle(Vector3 spikePos)
     {
         if (rb == null || playerController == null) return;
 
