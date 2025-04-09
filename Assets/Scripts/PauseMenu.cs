@@ -67,6 +67,10 @@ public class PauseMenu : MonoBehaviour
     /// </summary>
     public void goMainMenu()
     {
+        if(GameManager.Instance != null)
+        {
+            GameManager.Instance.StopTheLevelMusic();
+        }
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
