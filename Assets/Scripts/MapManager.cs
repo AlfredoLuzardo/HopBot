@@ -35,6 +35,14 @@ public class MapManager : MonoBehaviour
         map = new Map(rows, cols);
         map.GenerateMap(difficulty);
         DrawMap();
+
+        if(GameManager.Instance != null)
+        {
+            if(!GameManager.Instance.audioSource.isPlaying)
+            {
+                GameManager.Instance.PlayTheLevelMusic();
+            }
+        }
     }
 
     /// <summary>
@@ -177,7 +185,6 @@ public class MapManager : MonoBehaviour
             else
             {
                 dangerousTile.SpawnSpike(spikePrefab);
-                dangerousTile.GetSpike().AddComponent<SpikeBehaviour>();
             }
         }
         else if(tile is BreakableTile breakableTile)

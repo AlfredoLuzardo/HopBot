@@ -10,6 +10,7 @@ using System.Collections;
 /// </summary>
 public class ItemInvincibility : Item
 {
+    public AudioSource audioSource;
     private Collider itemCollider;
     private MeshRenderer itemRenderer;
     [SerializeField] private Color flashColor;
@@ -39,16 +40,12 @@ public class ItemInvincibility : Item
         if (other.gameObject.CompareTag("Player"))
         {
             PlayerHealth health;
-
             health = other.gameObject.GetComponent<PlayerHealth>();
-
             health.BecomeInvincible(4f, flashColor);
-
-            Debug.Log("INVINCIBLE");
+            audioSource.Play();
             
             itemCollider.enabled = false;
             itemRenderer.enabled = false;
         }
     }
-
 }

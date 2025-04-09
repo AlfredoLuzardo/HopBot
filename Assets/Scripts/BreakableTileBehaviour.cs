@@ -46,7 +46,6 @@ namespace HopBotNamespace
             }
         }
 
-
         /// <summary>
         /// Waits for the animation to play
         /// </summary>

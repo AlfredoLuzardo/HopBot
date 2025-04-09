@@ -10,7 +10,8 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private float knockbackForce = 2f;
     [SerializeField] private float knockbackAngle = 45f;
-    [SerializeField] private Color flickerColor; 
+    [SerializeField] private Color flickerColor;
+    public AudioSource audioSource;
     private static int health;
     private bool isInvincible;
     private Rigidbody rb;
@@ -70,7 +71,6 @@ public class PlayerHealth : MonoBehaviour
         if(health <= 0)
         {
             Debug.Log("GAME OVER");
-            // Switch scenes
             FindFirstObjectByType<LoseMenu>().GameLost();
         }
     }
@@ -85,6 +85,7 @@ public class PlayerHealth : MonoBehaviour
 
         if(!isInvincible)
         {
+            audioSource.Play();
             health = health - damage;
             ValidateHealth();
             DamageFlicker();

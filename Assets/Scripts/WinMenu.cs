@@ -12,6 +12,7 @@ public class WinMenu : MonoBehaviour
     public GameObject winMenu;
     public PlayerHealth playerHealth;
     public GameObject playUI;
+    public AudioSource audioSource;
     public MapManager mapManager;
     
     /// <summary>
@@ -30,13 +31,12 @@ public class WinMenu : MonoBehaviour
     /// </summary>
     public void GameWon()
     {
-        
         if (mapManager == null)
         {
-             Debug.LogError("MapManager is null in GameWon. Cannot calculate score.");
-             winMenu.SetActive(true);
-             Time.timeScale = 0f;
-             return;
+            Debug.LogError("MapManager is null in GameWon. Cannot calculate score.");
+            winMenu.SetActive(true);
+            Time.timeScale = 0f;
+            return;
         }
 
         SafeTile endTile = null;
@@ -60,11 +60,13 @@ public class WinMenu : MonoBehaviour
         if (endTile != null)
         {
             int score = endTile.CalculateScore();
+            audioSource.Play();
 
             if (GameManager.Instance != null)
             {
                 PlayerHealth playerHealth;
                 playerHealth = FindFirstObjectByType<PlayerHealth>();
+
                 GameManager.Instance.UpdateCurrentHealth(playerHealth.GetHealth());
                 GameManager.Instance.AppendWonScore(score);
                 playUI.SetActive(false);
@@ -88,12 +90,12 @@ public class WinMenu : MonoBehaviour
         Time.timeScale = 1f;
         if (GameManager.Instance != null)
          {
-             GameManager.Instance.GoToNextLevel();
+            GameManager.Instance.GoToNextLevel();
          }
          else
          {
-             Debug.LogError("GameManager Instance not found! Cannot go to next level.");
-             SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
+            Debug.LogError("GameManager Instance not found! Cannot go to next level.");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
          }
     }
 
@@ -105,14 +107,15 @@ public class WinMenu : MonoBehaviour
         Time.timeScale = 1f;
         Time.timeScale = 1f;
 
-         if (GameManager.Instance != null)
-         {
-             GameManager.Instance.ReturnToMainMenu();
-         }
-         else
-         {
-              Debug.LogError("GameManager Instance not found! Cannot go to main menu.");
-              SceneManager.LoadScene("MainMenu");
-         }
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.StopTheLevelMusic();
+            GameManager.Instance.ReturnToMainMenu();
+        }
+        else
+        {
+            Debug.LogError("GameManager Instance not found! Cannot go to main menu.");
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 }

@@ -13,6 +13,7 @@ public class ItemStopEnemies : Item
     private float duration = 2f;
     private Collider itemCollider;
     private MeshRenderer itemRenderer;
+    public AudioSource audioSource;
 
     /// <summary>
     /// Start method
@@ -32,16 +33,14 @@ public class ItemStopEnemies : Item
         if (other.gameObject.CompareTag("Player"))
         {
             EnemyBehaviour[] enemies;
-
             enemies = FindObjectsOfType<EnemyBehaviour>();
+            audioSource.Play();
 
             foreach(EnemyBehaviour enemy in enemies)
             {
                 enemy.SetNotAllowed();
 
                 enemy.GetEmpParticle().Play();
-                Debug.Log("Playing particle system:" + enemy.GetEmpParticle().isPlaying);
-                
             }
 
             StartCoroutine(ResumeEnemies(enemies));

@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public GameObject directionArrow;
     public Vector3 lastTileStepped;
     public Vector3 currentPosition;
+    public AudioSource audioSource;
     private Rigidbody rb;
     private Camera mainCamera;
     public bool isJumping = false;
@@ -53,7 +54,6 @@ public class PlayerController : MonoBehaviour
             LaunchPlayer();
             isJumping = true;
         }
-
     }
 
     /// <summary>
@@ -127,6 +127,7 @@ public class PlayerController : MonoBehaviour
     public void LaunchPlayer()
     {
         if (rb == null) return;
+        audioSource.Play();
         rb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
         isGrounded = false;
         groundCount = 0;

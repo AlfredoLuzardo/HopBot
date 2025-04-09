@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public int currentLevel = 0;
     public int currentGameScore = 0;
     public int currentHealth = 5;
+    public AudioSource audioSource;
 
     /// <summary>
     /// Awake method
@@ -25,6 +26,19 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    /// <summary>
+    /// Play the game run music
+    /// </summary>
+    public void PlayTheLevelMusic()
+    {
+        audioSource.Play();
+    }
+
+    public void StopTheLevelMusic()
+    {
+        audioSource.Stop();
     }
 
     /// <summary>

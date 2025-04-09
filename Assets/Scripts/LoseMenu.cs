@@ -9,6 +9,7 @@ public class LoseMenu : MonoBehaviour
 {
     public GameObject loseMenu;
     public GameObject playUI;
+    public AudioSource audioSource;
 
     /// <summary>
     /// Start method
@@ -23,6 +24,7 @@ public class LoseMenu : MonoBehaviour
     /// </summary>
     public void GameLost()
     {
+        audioSource.Play();
         loseMenu.SetActive(true);
         playUI.SetActive(false);
         Time.timeScale = 0f;
@@ -34,8 +36,11 @@ public class LoseMenu : MonoBehaviour
     public void playAgain()
     {
         Time.timeScale = 1f;
-        GameManager.Instance.ResetLevel();
-        GameManager.Instance.ResetHealth();
+        if(GameManager.Instance != null)
+        {
+            GameManager.Instance.ResetLevel();
+            GameManager.Instance.ResetHealth();
+        }
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -46,13 +51,14 @@ public class LoseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         if (GameManager.Instance != null)
-         {
-             GameManager.Instance.ReturnToMainMenu();
-         }
-         else
-         {
-              Debug.LogError("GameManager Instance not found! Cannot go to main menu.");
-              SceneManager.LoadScene("MainMenu");
-         }
+        {
+            GameManager.Instance.StopTheLevelMusic();
+            GameManager.Instance.ReturnToMainMenu();
+        }
+        else
+        {
+            Debug.LogError("GameManager Instance not found! Cannot go to main menu.");
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 }
