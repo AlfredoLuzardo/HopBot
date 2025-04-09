@@ -7,7 +7,6 @@ using UnityEngine;
 public class BreakableTile : Tile
 {
     GameObject breakableTile;
-    AudioSource audioSource;
     int durability;
     bool isBroken;
 
@@ -73,7 +72,6 @@ public class BreakableTile : Tile
     public void DecrementDurability()
     {
         durability--;
-        audioSource.Play();
 
         if (durability == 0)
         {
