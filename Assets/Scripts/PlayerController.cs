@@ -102,11 +102,13 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Moves the player towards the mouse cursor when Ctrl is held.
+    /// Moves the player towards the mouse cursor when Ctrl or mouse left button is held.
     /// </summary>
     private void HandleBotMovement()
     {
-        if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
+        if (Input.GetMouseButton(0) ||
+            Input.GetKey(KeyCode.LeftControl) ||
+            Input.GetKey(KeyCode.RightControl))
         {
             Plane groundPlane;
             Ray ray;
