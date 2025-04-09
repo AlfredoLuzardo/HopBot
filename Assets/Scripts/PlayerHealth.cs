@@ -70,7 +70,6 @@ public class PlayerHealth : MonoBehaviour
     {
         if(health <= 0)
         {
-            Debug.Log("GAME OVER");
             FindFirstObjectByType<LoseMenu>().GameLost();
         }
     }
@@ -147,10 +146,8 @@ public class PlayerHealth : MonoBehaviour
     /// <returns></returns>
     private IEnumerator ResumeVincibility(float timeDurationSec)
     {
-        Debug.Log("INVINCIBLE START");
         yield return new WaitForSeconds(timeDurationSec);
         SetVincible();
-        Debug.Log("NOT INVINCIBLE");
     }
 
         /// <summary>
@@ -162,7 +159,6 @@ public class PlayerHealth : MonoBehaviour
     {
         yield return flashBehaviour.FlashCouroutine(timeDurationSec, flashColor, 0.8f);
         SetVincible();
-        Debug.Log("NOT INVINCIBLE");
     }
 
     /// <summary>

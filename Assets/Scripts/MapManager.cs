@@ -19,6 +19,8 @@ public class MapManager : MonoBehaviour
     public GameObject enemyObj;
     public GameObject invincibilityItem;
     public GameObject stopEnemiesItem;
+    public AudioClip breakSoundClip;
+
     public int rows = 10;
     public int cols = 10;
     public string difficulty = "easy";
@@ -194,6 +196,12 @@ public class MapManager : MonoBehaviour
             breakableTile.setTileObject(newTile);
             tileBehaviour = newTile.AddComponent<BreakableTileBehaviour>();
             tileBehaviour.SetBreakableTile(breakableTile);
+
+            AudioSource source = newTile.AddComponent<AudioSource>();
+            source.clip = breakSoundClip;
+            source.playOnAwake = false;
+
+            breakableTile.audioSource = source;
         }
     }
 }

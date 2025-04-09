@@ -41,12 +41,10 @@ public class SpikeBehaviour : MonoBehaviour, Harmful
         PlayerHealth health;
 
         health = player.GetComponent<PlayerHealth>();
-        Debug.Log("PLAYER HEALTH BEFORE: " + health.GetHealth());
 
         if(health != null)
         {
             health.TakeDamage(damage, transform.position);
-            Debug.Log("PLAYER HEALTH AFTER: " + health.GetHealth());
         }
         else
         {

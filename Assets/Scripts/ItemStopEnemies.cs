@@ -63,7 +63,6 @@ public class ItemStopEnemies : Item
         {
             enemy.SetAllowed();
             enemy.GetEmpParticle().Stop();
-            Debug.Log("Stopping particle system" + enemy.GetEmpParticle().isPlaying);
         }
     }
 }

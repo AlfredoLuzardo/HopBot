@@ -89,14 +89,14 @@ public class WinMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         if (GameManager.Instance != null)
-         {
-            GameManager.Instance.GoToNextLevel();
-         }
-         else
-         {
-            Debug.LogError("GameManager Instance not found! Cannot go to next level.");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
-         }
+        {
+           GameManager.Instance.GoToNextLevel();
+        }
+        else
+        {
+           Debug.LogError("GameManager Instance not found! Cannot go to next level.");
+           SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
+        }
     }
 
     /// <summary>

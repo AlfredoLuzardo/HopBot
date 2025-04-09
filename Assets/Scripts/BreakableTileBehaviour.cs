@@ -34,6 +34,7 @@ namespace HopBotNamespace
 
                     tileObject = breakableTile.GetTileObject();
                     anim = tileObject.GetComponent<Animator>();
+                    // breakableTile.audioSource.Play();
 
                     breakableTile.DecrementDurability();
                     

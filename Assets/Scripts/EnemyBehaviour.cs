@@ -112,8 +112,6 @@ public class EnemyBehaviour : MonoBehaviour, Harmful
                 return;
             }
 
-            Vector3 knockbackDirection = (player.transform.position - transform.position).normalized;
-
             attack(player);
         }
     }
@@ -127,12 +125,10 @@ public class EnemyBehaviour : MonoBehaviour, Harmful
         PlayerHealth health;
 
         health = player.GetComponent<PlayerHealth>();
-        Debug.Log("PLAYER HEALTH BEFORE: " + health.GetHealth());
 
         if(health != null)
         {
             health.TakeDamage(damage, transform.position);
-            Debug.Log("PLAYER HEALTH AFTER: " + health.GetHealth());
         }
         else
         {

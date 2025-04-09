@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -24,11 +25,24 @@ public class LoseMenu : MonoBehaviour
     /// </summary>
     public void GameLost()
     {
-        audioSource.Play();
+        if (audioSource != null)
+        {
+            audioSource.ignoreListenerPause = true;
+            audioSource.Play();
+            Debug.Log("Heehee: " + audioSource.isPlaying);
+        }
+
         loseMenu.SetActive(true);
+
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.StopTheLevelMusic();
+        }
+
         playUI.SetActive(false);
         Time.timeScale = 0f;
     }
+
 
     /// <summary>
     /// play again method
@@ -38,6 +52,7 @@ public class LoseMenu : MonoBehaviour
         Time.timeScale = 1f;
         if(GameManager.Instance != null)
         {
+            GameManager.Instance.PlayTheLevelMusic();
             GameManager.Instance.ResetLevel();
             GameManager.Instance.ResetHealth();
         }

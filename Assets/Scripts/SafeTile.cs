@@ -85,7 +85,6 @@ public class SafeTile : Tile
     {
         if(isEndTile)
         {
-            Debug.Log("HIT END TILE");
             CalculateScore();
             FindFirstObjectByType<WinMenu>().GameWon();
         }

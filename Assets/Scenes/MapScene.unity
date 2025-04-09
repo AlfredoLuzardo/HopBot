@@ -3196,6 +3196,7 @@ MonoBehaviour:
   enemyObj: {fileID: 9074645549464906663, guid: e54b86dceaf20ed4087aa3587ef80a8b, type: 3}
   invincibilityItem: {fileID: 1172477848406256172, guid: ef0ed799aeaf6a6408debeb05c5cc8f1, type: 3}
   stopEnemiesItem: {fileID: 856935974612031175, guid: 555c4eac9d0c54b47bf9b0d77cd20dac, type: 3}
+  breakSoundClip: {fileID: 8300000, guid: a1b8f1526e1d0f94292015122a797d25, type: 3}
   rows: 7
   cols: 7
   difficulty: hard

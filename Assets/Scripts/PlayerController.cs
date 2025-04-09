@@ -10,16 +10,18 @@ public class PlayerController : MonoBehaviour
 {
     public float jumpPower = 5;
     public float movementSpeed = 2f;
-    public float fallThreshold = -10f;
+    public float fallThreshold = 10f;
     public GameObject directionArrow;
     public Vector3 lastTileStepped;
     public Vector3 currentPosition;
     public AudioSource audioSource;
+    public AudioSource loseSound;
     private Rigidbody rb;
     private Camera mainCamera;
     public bool isJumping = false;
     public bool isGrounded = false;
     public int groundCount = 0;
+    private bool isLost = false;
     private bool disableAutoLaunch = false;
     
     /// <summary>
@@ -42,17 +44,29 @@ public class PlayerController : MonoBehaviour
         PreventTripping();
         UpdateDirectionArrow();
         HandleBotMovement();
-
-        currentPosition = transform.position;
-        if(currentPosition.y <= fallThreshold)
-        {
-            FindFirstObjectByType<LoseMenu>().GameLost();
-        }
+        CheckGameOverFallOFf();
 
         if (isGrounded && !isJumping && !disableAutoLaunch)
         {
             LaunchPlayer();
             isJumping = true;
+        }
+    }
+
+    /// <summary>
+    /// Ends the game if player falls off the map
+    /// </summary>
+    private void CheckGameOverFallOFf()
+    {
+        if(!isLost)
+        {
+            currentPosition = transform.position;
+            if(currentPosition.y <= fallThreshold)
+            {
+                isLost = true;
+                LoseMenu loseMenu = FindFirstObjectByType<LoseMenu>();
+                loseMenu.GameLost();
+            }
         }
     }
 
