@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 /// <summary>
 /// Author: Alfredo Luzardo A01379913
 /// Represents something that is harmful
