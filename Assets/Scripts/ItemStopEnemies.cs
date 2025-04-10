@@ -33,6 +33,7 @@ public class ItemStopEnemies : Item
         if (other.gameObject.CompareTag("Player"))
         {
             EnemyBehaviour[] enemies;
+            
             enemies = FindObjectsOfType<EnemyBehaviour>();
             audioSource.Play();
 

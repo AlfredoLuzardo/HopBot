@@ -49,9 +49,9 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void StartNewGame()
     {
-        currentLevel = 0;
-        currentGameScore = 0;
-        currentHealth = 5;
+        currentLevel        = 0;
+        currentGameScore    = 0;
+        currentHealth       = 5;
         GoToNextLevel();
     }
 
@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void ResetLevel()
     {
-        currentLevel = 1;
+        currentLevel     = 1;
         currentGameScore = 0;
     }
 

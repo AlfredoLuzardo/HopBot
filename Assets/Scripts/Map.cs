@@ -35,9 +35,11 @@ namespace HopBotNamespace
         public Map(int row, int col)
         {
             map = new Tile[row, col];
+            
             this.mapRowNum = row;
             this.mapColNum = col;
-            safeTileFactory = new SafeTileFactory();
+            
+            safeTileFactory      = new SafeTileFactory();
             dangerousTileFactory = new DangerousTileFactory();
             breakableTileFactory = new BreakableTileFactory();
         }

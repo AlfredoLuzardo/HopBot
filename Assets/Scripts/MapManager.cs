@@ -52,9 +52,12 @@ public class MapManager : MonoBehaviour
 
     private IEnumerator PauseAtGameStart()
     {
-        Time.timeScale = 0f;
-        float pauseTime = 1f;
-        float timer = 0f;
+        float pauseTime;
+        float timer;
+
+        Time.timeScale  = 0f;
+        pauseTime       = 1f;
+        timer           = 0f;
 
         while (timer < pauseTime)
         {
@@ -82,6 +85,32 @@ public class MapManager : MonoBehaviour
     /// </summary>
     /// <returns></returns>
     public Map GetMap() => map;
+
+    /// <summary>
+    /// Gets the ending tile
+    /// </summary>
+    /// <returns></returns>
+    public SafeTile GetEndTile()
+    {
+        SafeTile endTile;
+
+        endTile = null;
+    
+        for (int x = 0; x < map.GetNumRows(); x++)
+        {
+            for (int y = 0; y < map.GetNumCols(); y++)
+            {
+                if (map[x, y] is SafeTile safeTile && safeTile.GetIsEnd())
+                {
+                    endTile = safeTile;
+                    break;
+                }
+            }
+            if (endTile != null) break;
+        }
+
+        return endTile;
+    }
 
     /// <summary>
     /// Updates the players instance position
@@ -210,12 +239,13 @@ public class MapManager : MonoBehaviour
         else if(tile is BreakableTile breakableTile)
         {
             BreakableTileBehaviour tileBehaviour;
+            AudioSource source;
 
             breakableTile.setTileObject(newTile);
             tileBehaviour = newTile.AddComponent<BreakableTileBehaviour>();
             tileBehaviour.SetBreakableTile(breakableTile);
 
-            AudioSource source = newTile.AddComponent<AudioSource>();
+            source = newTile.AddComponent<AudioSource>();
             source.clip = breakSoundClip;
             source.playOnAwake = false;
 

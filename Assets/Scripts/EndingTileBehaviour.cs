@@ -9,6 +9,10 @@ public class EndingTileBehaviour : MonoBehaviour
 {
     private SafeTile endingTile;
 
+    /// <summary>
+    /// Sets the ending tile
+    /// </summary>
+    /// <param name="safeTile"></param>
     public void SetEndingTile(SafeTile safeTile)
     {
         endingTile = safeTile;

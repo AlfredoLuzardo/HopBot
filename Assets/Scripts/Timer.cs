@@ -25,6 +25,9 @@ public class Timer : MonoBehaviour
     /// </summary>
     void Update()
     {
+        int min;
+        int sec;
+
         timeLimit -= Time.deltaTime;
 
         if(timeLimit <= 0)
@@ -33,8 +36,8 @@ public class Timer : MonoBehaviour
             FindFirstObjectByType<LoseMenu>().GameLost();
         }
 
-        int min = Mathf.FloorToInt(timeLimit / 60);
-        int sec = Mathf.FloorToInt(timeLimit % 60);
+        min = Mathf.FloorToInt(timeLimit / 60);
+        sec = Mathf.FloorToInt(timeLimit % 60);
         timerText.text = string.Format("Timer {0:00}:{1:00}", min, sec);
     }
 

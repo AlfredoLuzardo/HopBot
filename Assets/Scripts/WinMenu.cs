@@ -31,6 +31,8 @@ public class WinMenu : MonoBehaviour
     /// </summary>
     public void GameWon()
     {
+        SafeTile endTile;
+
         if (mapManager == null)
         {
             Debug.LogError("MapManager is null in GameWon. Cannot calculate score.");
@@ -39,36 +41,25 @@ public class WinMenu : MonoBehaviour
             return;
         }
 
-        SafeTile endTile = null;
+        endTile = mapManager.GetEndTile();
         winMenu.SetActive(true);
         Time.timeScale = 0f;
-        Tile[,] currentMap = mapManager.GetMap().GetMap();
-
-        for (int x = 0; x < currentMap.GetLength(0); x++)
-        {
-            for (int y = 0; y < currentMap.GetLength(1); y++)
-            {
-                if (currentMap[x, y] is SafeTile safeTile && safeTile.GetIsEnd())
-                {
-                    endTile = safeTile;
-                    break;
-                }
-            }
-            if (endTile != null) break;
-        }
 
         if (endTile != null)
         {
-            int score = endTile.CalculateScore();
+            int score;
+            
+            score = endTile.CalculateScore();
             audioSource.Play();
 
             if (GameManager.Instance != null)
             {
                 PlayerHealth playerHealth;
-                playerHealth = FindFirstObjectByType<PlayerHealth>();
 
+                playerHealth = FindFirstObjectByType<PlayerHealth>();
                 GameManager.Instance.UpdateCurrentHealth(playerHealth.GetHealth());
                 GameManager.Instance.AppendWonScore(score);
+                
                 playUI.SetActive(false);
             }
             else
@@ -88,6 +79,7 @@ public class WinMenu : MonoBehaviour
     public void playAgain()
     {
         Time.timeScale = 1f;
+        
         if (GameManager.Instance != null)
         {
            GameManager.Instance.GoToNextLevel();

@@ -2,14 +2,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Author: Kieth Chow
+/// Author: Keith Chow
 /// Handles main menu
 /// </summary>
 public class MainMenu : MonoBehaviour
 {
 
     /// <summary>
-    /// 
+    /// Plays the game
     /// </summary>
     public void PlayGame()
     {
@@ -23,6 +23,9 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Quits the game
+    /// </summary>
     public void QuitGame()
     {
         if (GameManager.Instance != null)

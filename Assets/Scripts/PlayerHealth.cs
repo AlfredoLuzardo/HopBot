@@ -55,9 +55,10 @@ public class PlayerHealth : MonoBehaviour
         }
 
         isInvincible = false;
-        rb = GetComponent<Rigidbody>();
+        
+        rb               = GetComponent<Rigidbody>();
         playerController = GetComponent<PlayerController>();
-        flashBehaviour = GetComponent<FlashBehaviour>();
+        flashBehaviour   = GetComponent<FlashBehaviour>();
 
         if (rb == null) Debug.LogError("PlayerHealth: Rigidbody component not found!");
         if (playerController == null) Debug.LogError("PlayerHealth: PlayerController component not found!");
@@ -85,7 +86,7 @@ public class PlayerHealth : MonoBehaviour
         if(!isInvincible)
         {
             audioSource.Play();
-            health = health - damage;
+            health -= damage;
             ValidateHealth();
             DamageFlicker();
             BecomeInvincible(2f);
@@ -168,17 +169,23 @@ public class PlayerHealth : MonoBehaviour
     {
         if (rb == null || playerController == null) return;
 
-        Vector3 impactDirectionHorizontal = transform.position - spikePos;
+        Vector3 impactDirectionHorizontal;
+        Vector3 verticalComponent;
+        Vector3 knockbackVector;
+        float radianAngle;
+
+        impactDirectionHorizontal   = transform.position - spikePos;
         impactDirectionHorizontal.y = 0;
         impactDirectionHorizontal.Normalize();
 
-        float radianAngle = knockbackAngle * Mathf.Deg2Rad;
-        Vector3 verticalComponent = Vector3.up * Mathf.Sin(radianAngle);
-        Vector3 knockbackVector = (impactDirectionHorizontal + verticalComponent).normalized * knockbackForce;
+        radianAngle       = knockbackAngle * Mathf.Deg2Rad;
+        verticalComponent = Vector3.up * Mathf.Sin(radianAngle);
+        knockbackVector   = (impactDirectionHorizontal + verticalComponent).normalized * knockbackForce;
 
-        rb.linearVelocity = Vector3.zero;
+        rb.linearVelocity  = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         rb.AddForce(knockbackVector, ForceMode.Impulse);
+
         playerController.SetDisableAutoLaunch(true);
     }
 }

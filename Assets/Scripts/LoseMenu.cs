@@ -47,12 +47,14 @@ public class LoseMenu : MonoBehaviour
     public void playAgain()
     {
         Time.timeScale = 1f;
+
         if(GameManager.Instance != null)
         {
             GameManager.Instance.PlayTheLevelMusic();
             GameManager.Instance.ResetLevel();
             GameManager.Instance.ResetHealth();
         }
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -62,6 +64,7 @@ public class LoseMenu : MonoBehaviour
     public void goMainMenu()
     {
         Time.timeScale = 1f;
+        
         if (GameManager.Instance != null)
         {
             GameManager.Instance.StopTheLevelMusic();

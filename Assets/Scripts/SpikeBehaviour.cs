@@ -18,15 +18,17 @@ public class SpikeBehaviour : MonoBehaviour, Harmful
     {
         if (collision.gameObject.CompareTag("Player"))
         {   
-            GameObject player = collision.gameObject;
-            PlayerController playerController = player.GetComponent<PlayerController>();
+            GameObject player;
+            PlayerController playerController;
+
+            player = collision.gameObject;
+            playerController = player.GetComponent<PlayerController>();
+
             if (playerController == null)
             {
                 Debug.LogWarning("PlayerController component not found on Player.");
                 return;
             }
-
-            Vector3 knockbackDirection = (player.transform.position - transform.position).normalized;
 
             attack(player);
         }

@@ -29,7 +29,6 @@ public class DangerousTile : Tile
         float offsetY;
         float maxOffset;
         float spikeSize;
-        float spikeHeight;
         float tileSize;
         Vector3 spikePosition;
 
@@ -39,8 +38,6 @@ public class DangerousTile : Tile
 
         offsetX = Random.Range(-maxOffset, maxOffset);
         offsetY = Random.Range(-maxOffset, maxOffset);
-
-        spikeHeight = spikePrefab.transform.localScale.y;
 
         spikePosition = new Vector3(
             GetPositionX() + offsetX, 

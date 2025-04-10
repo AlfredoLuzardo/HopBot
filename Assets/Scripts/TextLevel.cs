@@ -9,7 +9,6 @@ using UnityEngine.UI;
 /// </summary>
 public class Level : MonoBehaviour
 {
-
     public Text levelText;
     
     /// <summary>

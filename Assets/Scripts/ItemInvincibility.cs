@@ -40,6 +40,7 @@ public class ItemInvincibility : Item
         if (other.gameObject.CompareTag("Player"))
         {
             PlayerHealth health;
+            
             health = other.gameObject.GetComponent<PlayerHealth>();
             health.BecomeInvincible(4f, flashColor);
             audioSource.Play();

@@ -208,7 +208,6 @@ public class PlayerController : MonoBehaviour
     /// <param name="value"></param>
     public void SetDisableAutoLaunch(bool value)
     {
-
         disableAutoLaunch = value;
         if (value)
         {

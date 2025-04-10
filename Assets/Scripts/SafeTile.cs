@@ -95,16 +95,21 @@ public class SafeTile : Tile
     /// </summary>
     /// <returns></returns>
     public int CalculateScore(){
-        Timer timer = GameObject.FindFirstObjectByType<Timer>();
+        Timer timer;
+        float remainingTime;
+        float initialTimeLimit;
+        float score;
+
+        timer = FindFirstObjectByType<Timer>();
+
         if (timer == null)
         {
             Debug.LogError("Timer not found in the scene.");
             return 0;
         }
 
-        float remainingTime = timer.GetRemainingTime();
-        float initialTimeLimit = timer.GetInitialTimeLimit();
-        float score;
+        remainingTime = timer.GetRemainingTime();
+        initialTimeLimit = timer.GetInitialTimeLimit();
 
         if (remainingTime >= initialTimeLimit - 5) 
         {
@@ -112,7 +117,9 @@ public class SafeTile : Tile
         }
         else
         {
-            float maxScoreTime = initialTimeLimit - 5; 
+            float maxScoreTime;
+            
+            maxScoreTime = initialTimeLimit - 5; 
             score = Mathf.Clamp((remainingTime / maxScoreTime) * 1000, 0, 1000);
         }
 

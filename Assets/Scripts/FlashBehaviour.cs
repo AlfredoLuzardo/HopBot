@@ -19,7 +19,7 @@ public class FlashBehaviour : MonoBehaviour
     {
         GameObject model;
 
-        model = transform.GetChild(0).gameObject;
+        model         = transform.GetChild(0).gameObject;
         modelRenderer = new List<Renderer>();
 
         foreach (Renderer renderer in model.GetComponentsInChildren<Renderer>())

@@ -18,8 +18,10 @@ public class HealthText : MonoBehaviour
     void Start()
     {
         PlayerHealth playerHealth;
+
         playerHealth = FindFirstObjectByType<PlayerHealth>();
         health = playerHealth.GetHealth();
+        
         if (healthText != null && GameManager.Instance != null)
         {
             health = GameManager.Instance.currentHealth;

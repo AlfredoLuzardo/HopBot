@@ -75,10 +75,10 @@ public class EnemyBehaviour : MonoBehaviour, Harmful
             Vector3 direction;
             Quaternion lookRotation;
 
-            direction = (Target.transform.position - transform.position).normalized;
-            direction.y = 0f;
-            lookRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+            direction           = (Target.transform.position - transform.position).normalized;
+            direction.y         = 0f;
+            lookRotation        = Quaternion.LookRotation(direction);
+            transform.rotation  = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
 
             direction = (Target.transform.position - transform.position).normalized;
             rb.MovePosition(transform.position + direction * speed * Time.fixedDeltaTime);
@@ -92,8 +92,8 @@ public class EnemyBehaviour : MonoBehaviour, Harmful
     {
         Quaternion currentRotation;
         
-        currentRotation = transform.rotation;
-        transform.rotation = Quaternion.Euler(0, currentRotation.eulerAngles.y, 0);
+        currentRotation     = transform.rotation;
+        transform.rotation  = Quaternion.Euler(0, currentRotation.eulerAngles.y, 0);
     }
 
     /// <summary>
@@ -104,8 +104,12 @@ public class EnemyBehaviour : MonoBehaviour, Harmful
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            GameObject player = collision.gameObject;
-            PlayerController playerController = player.GetComponent<PlayerController>();
+            GameObject player;
+            PlayerController playerController;
+
+            player = collision.gameObject;
+            playerController = player.GetComponent<PlayerController>();
+            
             if (playerController == null)
             {
                 Debug.LogWarning("PlayerController component not found on Player.");

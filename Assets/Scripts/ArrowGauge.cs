@@ -8,11 +8,9 @@ using UnityEngine;
 public class ArrowGauge : MonoBehaviour
 {
     public float powerSpeed;
-
     private Vector3 baseDirection = Vector3.forward;
     private float xDirection;
     private float yDirection;
-
     private float scaleFromOriginal = 0f;
     private bool increasing = true;
 
