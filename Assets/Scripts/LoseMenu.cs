@@ -28,7 +28,6 @@ public class LoseMenu : MonoBehaviour
         {
             audioSource.ignoreListenerPause = true;
             audioSource.Play();
-            Debug.Log("Heehee: " + audioSource.isPlaying);
         }
 
         loseMenu.SetActive(true);
